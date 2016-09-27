@@ -1,0 +1,10 @@
+C:\Users\s23-rp\Desktop\Shop\Shop\bin\Debug\Shop.exe.config
+C:\Users\s23-rp\Desktop\Shop\Shop\bin\Debug\Shop.exe
+C:\Users\s23-rp\Desktop\Shop\Shop\bin\Debug\Shop.pdb
+C:\Users\s23-rp\Desktop\Shop\Shop\obj\Debug\Shop.csprojResolveAssemblyReference.cache
+C:\Users\s23-rp\Desktop\Shop\Shop\obj\Debug\Shop.Properties.Resources.resources
+C:\Users\s23-rp\Desktop\Shop\Shop\obj\Debug\Shop.csproj.GenerateResource.Cache
+C:\Users\s23-rp\Desktop\Shop\Shop\obj\Debug\Shop.exe
+C:\Users\s23-rp\Desktop\Shop\Shop\obj\Debug\Shop.pdb
+C:\Users\s23-rp\Desktop\Shop\Shop\obj\Debug\Shop.SignIn.resources
+C:\Users\s23-rp\Desktop\Shop\Shop\obj\Debug\Shop.Registration.resources
