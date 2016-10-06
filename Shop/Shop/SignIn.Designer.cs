@@ -98,9 +98,8 @@
             this.comboBox_role.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBox_role.FormattingEnabled = true;
             this.comboBox_role.Items.AddRange(new object[] {
-            "User",
-            "Saler",
-            "Admin"});
+            "касир",
+            "адмін"});
             this.comboBox_role.Location = new System.Drawing.Point(71, 34);
             this.comboBox_role.Name = "comboBox_role";
             this.comboBox_role.Size = new System.Drawing.Size(157, 32);
