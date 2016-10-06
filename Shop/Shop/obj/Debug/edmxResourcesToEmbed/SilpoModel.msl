@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SilpoDBModelStoreContainer" CdmEntityContainer="SilpoDBEntities1">
+    <EntitySetMapping Name="Bill">
+      <EntityTypeMapping TypeName="SilpoDBModel.Bill">
+        <MappingFragment StoreEntitySet="Bill">
+          <ScalarProperty Name="Id_bill" ColumnName="Id_bill" />
+          <ScalarProperty Name="Balance" ColumnName="Balance" />
+          <ScalarProperty Name="Bonus" ColumnName="Bonus" />
+          <ScalarProperty Name="ID_user" ColumnName="ID_user" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Category">
+      <EntityTypeMapping TypeName="SilpoDBModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="ID_category" ColumnName="ID_category" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Discount">
+      <EntityTypeMapping TypeName="SilpoDBModel.Discount">
+        <MappingFragment StoreEntitySet="Discount">
+          <ScalarProperty Name="Id_discount" ColumnName="Id_discount" />
+          <ScalarProperty Name="Id_prod" ColumnName="Id_prod" />
+          <ScalarProperty Name="Percent" ColumnName="Percent" />
+          <ScalarProperty Name="Start" ColumnName="Start" />
+          <ScalarProperty Name="End" ColumnName="End" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="SilpoDBModel.Orders">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="ID_order_customer" ColumnName="ID_order_customer" />
+          <ScalarProperty Name="ID_prod" ColumnName="ID_prod" />
+          <ScalarProperty Name="Id_user" ColumnName="Id_user" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="FullPrice" ColumnName="FullPrice" />
+          <ScalarProperty Name="Date_of_order" ColumnName="Date_of_order" />
+          <ScalarProperty Name="Complited" ColumnName="Complited" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Producer">
+      <EntityTypeMapping TypeName="SilpoDBModel.Producer">
+        <MappingFragment StoreEntitySet="Producer">
+          <ScalarProperty Name="ID_producer" ColumnName="ID_producer" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product">
+      <EntityTypeMapping TypeName="SilpoDBModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="ID_prod" ColumnName="ID_prod" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Expiry_time" ColumnName="Expiry_time" />
+          <ScalarProperty Name="ID_category" ColumnName="ID_category" />
+          <ScalarProperty Name="ID_producer" ColumnName="ID_producer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sell">
+      <EntityTypeMapping TypeName="SilpoDBModel.Sell">
+        <MappingFragment StoreEntitySet="Sell">
+          <ScalarProperty Name="idSell" ColumnName="idSell" />
+          <ScalarProperty Name="idOrder" ColumnName="idOrder" />
+          <ScalarProperty Name="idSeller" ColumnName="idSeller" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShopBank">
+      <EntityTypeMapping TypeName="SilpoDBModel.ShopBank">
+        <MappingFragment StoreEntitySet="ShopBank">
+          <ScalarProperty Name="idBank" ColumnName="idBank" />
+          <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+          <ScalarProperty Name="Balance" ColumnName="Balance" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Storage">
+      <EntityTypeMapping TypeName="SilpoDBModel.Storage">
+        <MappingFragment StoreEntitySet="Storage">
+          <ScalarProperty Name="ID_storage" ColumnName="ID_storage" />
+          <ScalarProperty Name="id_supply" ColumnName="id_supply" />
+          <ScalarProperty Name="Available_items" ColumnName="Available_items" />
+          <ScalarProperty Name="FinalDate" ColumnName="FinalDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Supply">
+      <EntityTypeMapping TypeName="SilpoDBModel.Supply">
+        <MappingFragment StoreEntitySet="Supply">
+          <ScalarProperty Name="ID_supply" ColumnName="ID_supply" />
+          <ScalarProperty Name="Id_product" ColumnName="Id_product" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="MarkUp" ColumnName="MarkUp" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Date_made" ColumnName="Date_made" />
+          <ScalarProperty Name="Date_supply" ColumnName="Date_supply" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="SilpoDBModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="test">
+      <EntityTypeMapping TypeName="SilpoDBModel.test">
+        <MappingFragment StoreEntitySet="test">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="counts" ColumnName="counts" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="SilpoDBModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="ID_User" ColumnName="ID_User" />
+          <ScalarProperty Name="Full_name" ColumnName="Full_name" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="test_check5">
+      <EntityTypeMapping TypeName="SilpoDBModel.test_check5">
+        <MappingFragment StoreEntitySet="test_check5">
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="CustomerRole" ColumnName="CustomerRole" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

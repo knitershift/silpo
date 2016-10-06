@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SilpoDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Bill">
+    <Key>
+      <PropertyRef Name="Id_bill" />
+    </Key>
+    <Property Name="Id_bill" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Balance" Type="Int32" Nullable="false" />
+    <Property Name="Bonus" Type="Int32" Nullable="false" />
+    <Property Name="ID_user" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Bill_user_User_info" FromRole="Bill" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="ID_category" />
+    </Key>
+    <Property Name="ID_category" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Product_Category" FromRole="Category" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Discount">
+    <Key>
+      <PropertyRef Name="Id_discount" />
+    </Key>
+    <Property Name="Id_discount" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_prod" Type="Int32" Nullable="false" />
+    <Property Name="Percent" Type="Int32" Nullable="false" />
+    <Property Name="Start" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="End" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Discount_Product" FromRole="Discount" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="ID_order_customer" />
+    </Key>
+    <Property Name="ID_order_customer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_prod" Type="Int32" Nullable="false" />
+    <Property Name="Id_user" Type="Int32" Nullable="false" />
+    <Property Name="Count" Type="Int32" Nullable="false" />
+    <Property Name="FullPrice" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="Date_of_order" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Complited" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Order_Product" FromRole="Orders" ToRole="Product" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Order_User_info" FromRole="Orders" ToRole="Users" />
+    <NavigationProperty Name="Sell" Relationship="Self.FK_Sell_Order" FromRole="Orders" ToRole="Sell" />
+  </EntityType>
+  <EntityType Name="Producer">
+    <Key>
+      <PropertyRef Name="ID_producer" />
+    </Key>
+    <Property Name="ID_producer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Product_Producer" FromRole="Producer" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ID_prod" />
+    </Key>
+    <Property Name="ID_prod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expiry_time" Type="Int32" />
+    <Property Name="ID_category" Type="Int32" />
+    <Property Name="ID_producer" Type="Int32" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_Product_Category" FromRole="Product" ToRole="Category" />
+    <NavigationProperty Name="Discount" Relationship="Self.FK_Discount_Product" FromRole="Product" ToRole="Discount" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Product" FromRole="Product" ToRole="Orders" />
+    <NavigationProperty Name="Producer" Relationship="Self.FK_Product_Producer" FromRole="Product" ToRole="Producer" />
+    <NavigationProperty Name="Supply" Relationship="Self.FK_Supply_Product" FromRole="Product" ToRole="Supply" />
+  </EntityType>
+  <EntityType Name="Sell">
+    <Key>
+      <PropertyRef Name="idSell" />
+    </Key>
+    <Property Name="idSell" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idOrder" Type="Int32" Nullable="false" />
+    <Property Name="idSeller" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Sell_Order" FromRole="Sell" ToRole="Orders" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Sell_User" FromRole="Sell" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="ShopBank">
+    <Key>
+      <PropertyRef Name="idBank" />
+    </Key>
+    <Property Name="idBank" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AccountName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Balance" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Storage">
+    <Key>
+      <PropertyRef Name="ID_storage" />
+    </Key>
+    <Property Name="ID_storage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_supply" Type="Int32" Nullable="false" />
+    <Property Name="Available_items" Type="Int32" Nullable="false" />
+    <Property Name="FinalDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Supply" Relationship="Self.FK_Storage_Supply" FromRole="Storage" ToRole="Supply" />
+  </EntityType>
+  <EntityType Name="Supply">
+    <Key>
+      <PropertyRef Name="ID_supply" />
+    </Key>
+    <Property Name="ID_supply" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_product" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="MarkUp" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Int32" Nullable="false" />
+    <Property Name="Date_made" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Date_supply" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Supply_Product" FromRole="Supply" ToRole="Product" />
+    <NavigationProperty Name="Storage" Relationship="Self.FK_Storage_Supply" FromRole="Supply" ToRole="Storage" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="test">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="counts" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="ID_User" />
+    </Key>
+    <Property Name="ID_User" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Full_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Bill" Relationship="Self.FK_Bill_user_User_info" FromRole="Users" ToRole="Bill" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Order_User_info" FromRole="Users" ToRole="Orders" />
+    <NavigationProperty Name="Sell" Relationship="Self.FK_Sell_User" FromRole="Users" ToRole="Sell" />
+  </EntityType>
+  <EntityType Name="test_check5">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="CustomerRole" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_Bill_user_User_info">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID_User" />
+      </Principal>
+      <Dependent Role="Bill">
+        <PropertyRef Name="ID_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="ID_category" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ID_category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Discount_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Discount" Type="Self.Discount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ID_prod" />
+      </Principal>
+      <Dependent Role="Discount">
+        <PropertyRef Name="Id_prod" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ID_prod" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="ID_prod" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_User_info">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID_User" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="Id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sell_Order">
+    <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+    <End Role="Sell" Type="Self.Sell" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="ID_order_customer" />
+      </Principal>
+      <Dependent Role="Sell">
+        <PropertyRef Name="idOrder" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Producer">
+    <End Role="Producer" Type="Self.Producer" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producer">
+        <PropertyRef Name="ID_producer" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ID_producer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Supply_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Supply" Type="Self.Supply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ID_prod" />
+      </Principal>
+      <Dependent Role="Supply">
+        <PropertyRef Name="Id_product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sell_User">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Sell" Type="Self.Sell" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID_User" />
+      </Principal>
+      <Dependent Role="Sell">
+        <PropertyRef Name="idSeller" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Storage_Supply">
+    <End Role="Supply" Type="Self.Supply" Multiplicity="1" />
+    <End Role="Storage" Type="Self.Storage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supply">
+        <PropertyRef Name="ID_supply" />
+      </Principal>
+      <Dependent Role="Storage">
+        <PropertyRef Name="id_supply" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SilpoDBEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Bill" EntityType="Self.Bill" />
+    <EntitySet Name="Category" EntityType="Self.Category" />
+    <EntitySet Name="Discount" EntityType="Self.Discount" />
+    <EntitySet Name="Orders" EntityType="Self.Orders" />
+    <EntitySet Name="Producer" EntityType="Self.Producer" />
+    <EntitySet Name="Product" EntityType="Self.Product" />
+    <EntitySet Name="Sell" EntityType="Self.Sell" />
+    <EntitySet Name="ShopBank" EntityType="Self.ShopBank" />
+    <EntitySet Name="Storage" EntityType="Self.Storage" />
+    <EntitySet Name="Supply" EntityType="Self.Supply" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="test" EntityType="Self.test" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <EntitySet Name="test_check5" EntityType="Self.test_check5" />
+    <AssociationSet Name="FK_Bill_user_User_info" Association="Self.FK_Bill_user_User_info">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Bill" EntitySet="Bill" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Discount_Product" Association="Self.FK_Discount_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Discount" EntitySet="Discount" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Product" Association="Self.FK_Order_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_User_info" Association="Self.FK_Order_User_info">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sell_Order" Association="Self.FK_Sell_Order">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="Sell" EntitySet="Sell" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Producer" Association="Self.FK_Product_Producer">
+      <End Role="Producer" EntitySet="Producer" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Supply_Product" Association="Self.FK_Supply_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Supply" EntitySet="Supply" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sell_User" Association="Self.FK_Sell_User">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Sell" EntitySet="Sell" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Storage_Supply" Association="Self.FK_Storage_Supply">
+      <End Role="Supply" EntitySet="Supply" />
+      <End Role="Storage" EntitySet="Storage" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
