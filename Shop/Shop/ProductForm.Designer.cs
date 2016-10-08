@@ -36,6 +36,7 @@
             this.col_produce = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.but_add = new System.Windows.Forms.Button();
             this.but_delete = new System.Windows.Forms.Button();
+            this.textBox_search = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // listView_product
@@ -49,9 +50,9 @@
             this.col_produce});
             this.listView_product.ForeColor = System.Drawing.SystemColors.WindowText;
             this.listView_product.FullRowSelect = true;
-            this.listView_product.Location = new System.Drawing.Point(12, 12);
+            this.listView_product.Location = new System.Drawing.Point(12, 46);
             this.listView_product.Name = "listView_product";
-            this.listView_product.Size = new System.Drawing.Size(637, 602);
+            this.listView_product.Size = new System.Drawing.Size(637, 568);
             this.listView_product.TabIndex = 0;
             this.listView_product.UseCompatibleStateImageBehavior = false;
             this.listView_product.View = System.Windows.Forms.View.Details;
@@ -108,19 +109,30 @@
             this.but_delete.UseVisualStyleBackColor = false;
             this.but_delete.Click += new System.EventHandler(this.but_delete_Click);
             // 
+            // textBox_search
+            // 
+            this.textBox_search.Location = new System.Drawing.Point(477, 12);
+            this.textBox_search.Name = "textBox_search";
+            this.textBox_search.Size = new System.Drawing.Size(172, 20);
+            this.textBox_search.TabIndex = 3;
+            this.textBox_search.TextChanged += new System.EventHandler(this.textBox_search_TextChanged);
+            // 
             // ProductForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkCyan;
             this.ClientSize = new System.Drawing.Size(751, 626);
+            this.Controls.Add(this.textBox_search);
             this.Controls.Add(this.but_delete);
             this.Controls.Add(this.but_add);
             this.Controls.Add(this.listView_product);
             this.ForeColor = System.Drawing.Color.DimGray;
             this.Name = "ProductForm";
             this.Text = "ProductForm";
+            this.Load += new System.EventHandler(this.ProductForm_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -134,5 +146,6 @@
         private System.Windows.Forms.ColumnHeader col_time;
         private System.Windows.Forms.ColumnHeader col_cat;
         private System.Windows.Forms.ColumnHeader col_produce;
+        private System.Windows.Forms.TextBox textBox_search;
     }
 }

@@ -35,8 +35,7 @@ namespace Shop
             SilpoDBEntities1 db = new SilpoDBEntities1();
             int id = db.Product.Where(x => x.Name == combo_prod.Text).First().ID_prod;
 
-            MessageBox.Show(id + "  " + numeric_price.Value + "  " + numeric_markup.Value + "  " + numeric_amount.Value + "  " + dateTime_made.Value + "  " +  dateTime_supply.Value );
-
+            
             Supply supply = new Supply()
             {
             Id_product = id,
@@ -49,8 +48,7 @@ namespace Shop
 
             };
             db.Supply.Add(supply);
-            db.SaveChanges();
-            MessageBox.Show(combo_prod.Text + "  Додано");
+            db.SaveChanges();       
             this.Hide();
            
 

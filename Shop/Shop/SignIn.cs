@@ -17,32 +17,42 @@ namespace Shop
         {
             InitializeComponent();
             comboBox_role.SelectedIndex = 0;
-
-
-
-
-
         }
-
+        class CursorEx : IDisposable
+        {
+            public CursorEx()
+            {
+                Cursor.Current = Cursors.WaitCursor;
+            }
+            public void Dispose()
+            {
+                Cursor.Current = Cursors.Default;
+            }
+        }
         private void button_signIn_Click(object sender, EventArgs e)
         {
             SilpoDBEntities1 db = new SilpoDBEntities1();
-            foreach(var i in db.Users){
-                if (textBox_login.Text == i.Login && textBox_password.Text == i.Password && comboBox_role.Text == "адмін")
+
+
+            using (new CursorEx())
+            {
+                foreach (var i in db.Users)
                 {
+                    if (textBox_login.Text == i.Login && textBox_password.Text == i.Password && comboBox_role.Text == "адмін")
+                    {
 
-                    AdminPanel adm = new AdminPanel(textBox_login.Text);
-                    SignIn sn = new SignIn();
-                    this.Hide();
-                    Thread.Sleep(1000);
-                    adm.ShowDialog();
-                    
-                    break;
+                        AdminPanel adm = new AdminPanel(textBox_login.Text);
+                        SignIn sn = new SignIn();
+                        this.Hide();
+                        Thread.Sleep(1000);
+                        adm.ShowDialog();
 
+                        break;
+
+                    }
                 }
-            }
-           
 
+            }
 
         }
 

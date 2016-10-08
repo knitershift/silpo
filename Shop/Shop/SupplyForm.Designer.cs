@@ -38,6 +38,7 @@
             this.col_amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.col_made = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.col_supply = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.textBox_search = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // but_delete
@@ -78,9 +79,9 @@
             this.col_made,
             this.col_supply});
             this.listView_supply.FullRowSelect = true;
-            this.listView_supply.Location = new System.Drawing.Point(12, 12);
+            this.listView_supply.Location = new System.Drawing.Point(12, 49);
             this.listView_supply.Name = "listView_supply";
-            this.listView_supply.Size = new System.Drawing.Size(632, 647);
+            this.listView_supply.Size = new System.Drawing.Size(632, 610);
             this.listView_supply.TabIndex = 3;
             this.listView_supply.UseCompatibleStateImageBehavior = false;
             this.listView_supply.View = System.Windows.Forms.View.Details;
@@ -118,18 +119,28 @@
             this.col_supply.Text = "Suppy";
             this.col_supply.Width = 147;
             // 
+            // textBox_search
+            // 
+            this.textBox_search.Location = new System.Drawing.Point(460, 13);
+            this.textBox_search.Name = "textBox_search";
+            this.textBox_search.Size = new System.Drawing.Size(184, 20);
+            this.textBox_search.TabIndex = 6;
+            this.textBox_search.TextChanged += new System.EventHandler(this.textBox_search_TextChanged);
+            // 
             // SupplyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkCyan;
             this.ClientSize = new System.Drawing.Size(756, 671);
+            this.Controls.Add(this.textBox_search);
             this.Controls.Add(this.but_delete);
             this.Controls.Add(this.but_add);
             this.Controls.Add(this.listView_supply);
             this.Name = "SupplyForm";
             this.Text = "SupplyForm";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -145,5 +156,6 @@
         private System.Windows.Forms.ColumnHeader col_amount;
         private System.Windows.Forms.ColumnHeader col_made;
         private System.Windows.Forms.ColumnHeader col_supply;
+        private System.Windows.Forms.TextBox textBox_search;
     }
 }

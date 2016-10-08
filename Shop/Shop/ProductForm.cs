@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Threading;
 
 namespace Shop
 {
@@ -22,7 +22,7 @@ namespace Shop
             InitializeComponent();
             db = db1;
             listItem = new ListViewItem();
-            FillDB();
+            
 
 
         }
@@ -30,7 +30,7 @@ namespace Shop
         public void FillDB() {
 
 
-            
+            using(new CursorEx()){
             foreach (var i in db.Product)
             {
 
@@ -39,8 +39,10 @@ namespace Shop
                 listItem.SubItems.Add(i.Expiry_time.ToString());
                 listItem.SubItems.Add(db.Category.Where(x => x.ID_category == i.ID_category).First().Name);
                 listItem.SubItems.Add(db.Producer.Where(x => x.ID_producer == i.ID_producer).First().Name);
+                Thread.Sleep(100);
+               
             }
-
+            }
         }
 
 
@@ -51,6 +53,7 @@ namespace Shop
             newProduct.ShowDialog();
             listView_product.Items.Clear();
             FillDB();
+
 
         }
 
@@ -65,9 +68,7 @@ namespace Shop
                     int id = Int32.Parse(itm.Text);
                     db.Product.Remove(db.Product.Where(a => a.ID_prod == id).First());
                 }
-            }
-            MessageBox.Show(" Видалено");
-            MessageBox.Show("Зачекайте!");
+            }          
             db.SaveChanges();
             listView_product.Items.Clear();
             FillDB();
@@ -91,6 +92,45 @@ namespace Shop
 
 
         }
-      
+
+        private void textBox_search_TextChanged(object sender, EventArgs e)
+        {
+
+
+            listView_product.Items.Clear(); 
+
+           List<Product> pr = db.Product.Where(a => a.Name.StartsWith(textBox_search.Text)).ToList();
+
+           foreach (var p in pr)
+           {
+               listItem = listView_product.Items.Add(p.ID_prod.ToString());
+               listItem.SubItems.Add(p.Name);
+               listItem.SubItems.Add(p.Expiry_time.ToString());
+               listItem.SubItems.Add(db.Category.Where(x => x.ID_category == p.ID_category).First().Name);
+               listItem.SubItems.Add(db.Producer.Where(x => x.ID_producer == p.ID_producer).First().Name);
+
+           }
+
+
+
+        }
+
+        private void ProductForm_Load(object sender, EventArgs e)
+        {
+
+            FillDB();
+
+        }
+        class CursorEx : IDisposable
+        {
+            public CursorEx()
+            {
+                Cursor.Current = Cursors.WaitCursor;
+            }
+            public void Dispose()
+            {
+                Cursor.Current = Cursors.Default;
+            }
+        }
     }
 }
