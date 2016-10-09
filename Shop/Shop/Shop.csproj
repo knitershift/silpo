@@ -90,6 +90,9 @@
     <Compile Include="Producer.cs">
       <DependentUpon>SilpoModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProducerCats.cs">
+      <DependentUpon>SilpoModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Product.cs">
       <DependentUpon>SilpoModel.tt</DependentUpon>
     </Compile>
@@ -149,12 +152,6 @@
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>SilpoModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="test.cs">
-      <DependentUpon>SilpoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="test_check5.cs">
-      <DependentUpon>SilpoModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Users.cs">
       <DependentUpon>SilpoModel.tt</DependentUpon>
     </Compile>
@@ -202,8 +199,18 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SilpoModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="SilpoModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SilpoModel.edmx</DependentUpon>
+      <LastGenOutput>SilpoModel.Context.cs</LastGenOutput>
+    </None>
     <None Include="SilpoModel.edmx.diagram">
       <DependentUpon>SilpoModel.edmx</DependentUpon>
+    </None>
+    <None Include="SilpoModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SilpoModel.edmx</DependentUpon>
+      <LastGenOutput>SilpoModel.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -211,18 +218,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="SilpoModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SilpoModel.edmx</DependentUpon>
-      <LastGenOutput>SilpoModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="SilpoModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SilpoModel.edmx</DependentUpon>
-      <LastGenOutput>SilpoModel.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

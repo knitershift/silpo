@@ -21,7 +21,7 @@ namespace Shop
         public String[] country = null;
         private void Admin_Load(object sender, EventArgs e)
         {
-            SilpoDBEntities1 db = new SilpoDBEntities1();
+            SilpoDBEntities2 db = new SilpoDBEntities2();
             foreach (var i in db.Category) {
                 combo_category.Items.Add(i.Name);         
             }
@@ -45,7 +45,7 @@ namespace Shop
             }
             else { 
            // MessageBox.Show(combo_category.Text + "  " + combo_producer.Text + "  " + text_name.Text + " " + text_amount.Text + " " + numeric_datedie.Value);
-            SilpoDBEntities1 db = new SilpoDBEntities1();
+            SilpoDBEntities2 db = new SilpoDBEntities2();
 
                
                 Product product = new Product()

@@ -13,14 +13,14 @@ namespace Shop
 {
     public partial class SupplyForm : Form
     {
-        SilpoDBEntities1 db;
+        SilpoDBEntities2 db;
         ListViewItem listItem;
         public SupplyForm()
         {
             InitializeComponent();
            
 
-             db = new SilpoDBEntities1();
+             db = new SilpoDBEntities2();
              FillDB();
          
         }

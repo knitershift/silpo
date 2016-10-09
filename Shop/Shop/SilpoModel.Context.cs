@@ -13,10 +13,10 @@ namespace Shop
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SilpoDBEntities1 : DbContext
+    public partial class SilpoDBEntities2 : DbContext
     {
-        public SilpoDBEntities1()
-            : base("name=SilpoDBEntities1")
+        public SilpoDBEntities2()
+            : base("name=SilpoDBEntities2")
         {
         }
     
@@ -30,14 +30,13 @@ namespace Shop
         public virtual DbSet<Discount> Discount { get; set; }
         public virtual DbSet<Orders> Orders { get; set; }
         public virtual DbSet<Producer> Producer { get; set; }
+        public virtual DbSet<ProducerCats> ProducerCats { get; set; }
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<Sell> Sell { get; set; }
         public virtual DbSet<ShopBank> ShopBank { get; set; }
         public virtual DbSet<Storage> Storage { get; set; }
         public virtual DbSet<Supply> Supply { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<test> test { get; set; }
         public virtual DbSet<Users> Users { get; set; }
-        public virtual DbSet<test_check5> test_check5 { get; set; }
     }
 }

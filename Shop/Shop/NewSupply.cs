@@ -13,7 +13,7 @@ namespace Shop
     public partial class NewSupply : Form
     {
 
-        SilpoDBEntities1 db = new SilpoDBEntities1();
+        SilpoDBEntities2 db = new SilpoDBEntities2();
         public NewSupply()
         {
             InitializeComponent();
@@ -32,7 +32,7 @@ namespace Shop
 
         private void but_ok_Click(object sender, EventArgs e)
         {
-            SilpoDBEntities1 db = new SilpoDBEntities1();
+            SilpoDBEntities2 db = new SilpoDBEntities2();
             int id = db.Product.Where(x => x.Name == combo_prod.Text).First().ID_prod;
 
             

@@ -51,6 +51,14 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Country" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="ProducerCats">
+          <Key>
+            <PropertyRef Name="ID_producer_cats" />
+          </Key>
+          <Property Name="ID_producer_cats" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_producer" Type="int" Nullable="false" />
+          <Property Name="Id_category" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="ID_prod" />
@@ -82,6 +90,7 @@
             <PropertyRef Name="ID_storage" />
           </Key>
           <Property Name="ID_storage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_product" Type="int" Nullable="false" />
           <Property Name="id_supply" Type="int" Nullable="false" />
           <Property Name="Available_items" Type="int" Nullable="false" />
           <Property Name="FinalDate" Type="datetime" Nullable="false" />
@@ -108,34 +117,6 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <EntityType Name="test">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="counts" Type="int" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'SilpoDB.dbo.test_check5' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="test_check5">
-          <Key>
-            <PropertyRef Name="CustomerId" />
-          </Key>
-          <Property Name="CustomerId" Type="int" Nullable="false" />
-          <Property Name="CustomerRole" Type="varchar" MaxLength="100" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'SilpoDB.dbo.test2' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="test2">
-          <Property Name="id" Type="int" />
-          <Property Name="suma" Type="int" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'SilpoDB.dbo.test3' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="test3">
-          <Property Name="id" Type="int" />
-          <Property Name="price" Type="int" />
-        </EntityType>-->
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="ID_User" />
@@ -147,6 +128,25 @@ warning 6013: The table/view 'SilpoDB.dbo.test3' does not have a primary key def
           <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="30" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'SilpoDB.dbo.Аркуш' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Аркуш">
+          <Property Name="номер" Type="float" />
+          <Property Name="k" Type="nvarchar" MaxLength="255" />
+          <Property Name="k1" Type="float" />
+          <Property Name="l" Type="float" />
+          <Property Name="g" Type="float" />
+          <Property Name="g1" Type="float" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'SilpoDB.dbo.Аркуш2' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Аркуш2">
+          <Property Name="номер" Type="float" />
+          <Property Name="k" Type="nvarchar" MaxLength="255" />
+          <Property Name="l" Type="float" />
+          <Property Name="g" Type="float" />
+          <Property Name="g1" Type="float" />
+        </EntityType>-->
         <Association Name="FK_Bill_user_User_info">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
@@ -192,6 +192,30 @@ warning 6013: The table/view 'SilpoDB.dbo.test3' does not have a primary key def
             </Principal>
             <Dependent Role="Orders">
               <PropertyRef Name="Id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProducerCats_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="ProducerCats" Type="Self.ProducerCats" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID_category" />
+            </Principal>
+            <Dependent Role="ProducerCats">
+              <PropertyRef Name="Id_category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProducerCats_Producer">
+          <End Role="Producer" Type="Self.Producer" Multiplicity="1" />
+          <End Role="ProducerCats" Type="Self.ProducerCats" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producer">
+              <PropertyRef Name="ID_producer" />
+            </Principal>
+            <Dependent Role="ProducerCats">
+              <PropertyRef Name="Id_producer" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -273,20 +297,14 @@ warning 6013: The table/view 'SilpoDB.dbo.test3' does not have a primary key def
           <EntitySet Name="Discount" EntityType="Self.Discount" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Producer" EntityType="Self.Producer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProducerCats" EntityType="Self.ProducerCats" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sell" EntityType="Self.Sell" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShopBank" EntityType="Self.ShopBank" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Storage" EntityType="Self.Storage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Supply" EntityType="Self.Supply" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="test" EntityType="Self.test" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="test_check5" EntityType="Self.test_check5" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [test_check5].[CustomerId] AS [CustomerId], 
-    [test_check5].[CustomerRole] AS [CustomerRole]
-    FROM [dbo].[test_check5] AS [test_check5]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_Bill_user_User_info" Association="Self.FK_Bill_user_User_info">
             <End Role="Users" EntitySet="Users" />
             <End Role="Bill" EntitySet="Bill" />
@@ -302,6 +320,14 @@ warning 6013: The table/view 'SilpoDB.dbo.test3' does not have a primary key def
           <AssociationSet Name="FK_Order_User_info" Association="Self.FK_Order_User_info">
             <End Role="Users" EntitySet="Users" />
             <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProducerCats_Category" Association="Self.FK_ProducerCats_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="ProducerCats" EntitySet="ProducerCats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProducerCats_Producer" Association="Self.FK_ProducerCats_Producer">
+            <End Role="Producer" EntitySet="Producer" />
+            <End Role="ProducerCats" EntitySet="ProducerCats" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
             <End Role="Category" EntitySet="Category" />
@@ -349,6 +375,7 @@ warning 6013: The table/view 'SilpoDB.dbo.test3' does not have a primary key def
           </Key>
           <Property Name="ID_category" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ProducerCats" Relationship="Self.FK_ProducerCats_Category" FromRole="Category" ToRole="ProducerCats" />
           <NavigationProperty Name="Product" Relationship="Self.FK_Product_Category" FromRole="Category" ToRole="Product" />
         </EntityType>
         <EntityType Name="Discount">
@@ -384,7 +411,18 @@ warning 6013: The table/view 'SilpoDB.dbo.test3' does not have a primary key def
           <Property Name="ID_producer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ProducerCats" Relationship="Self.FK_ProducerCats_Producer" FromRole="Producer" ToRole="ProducerCats" />
           <NavigationProperty Name="Product" Relationship="Self.FK_Product_Producer" FromRole="Producer" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="ProducerCats">
+          <Key>
+            <PropertyRef Name="ID_producer_cats" />
+          </Key>
+          <Property Name="ID_producer_cats" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_producer" Type="Int32" Nullable="false" />
+          <Property Name="Id_category" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_ProducerCats_Category" FromRole="ProducerCats" ToRole="Category" />
+          <NavigationProperty Name="Producer" Relationship="Self.FK_ProducerCats_Producer" FromRole="ProducerCats" ToRole="Producer" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -424,6 +462,7 @@ warning 6013: The table/view 'SilpoDB.dbo.test3' does not have a primary key def
             <PropertyRef Name="ID_storage" />
           </Key>
           <Property Name="ID_storage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_product" Type="Int32" Nullable="false" />
           <Property Name="id_supply" Type="Int32" Nullable="false" />
           <Property Name="Available_items" Type="Int32" Nullable="false" />
           <Property Name="FinalDate" Type="DateTime" Nullable="false" Precision="3" />
@@ -453,13 +492,6 @@ warning 6013: The table/view 'SilpoDB.dbo.test3' does not have a primary key def
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="test">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="counts" Type="Int32" />
-        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="ID_User" />
@@ -474,13 +506,6 @@ warning 6013: The table/view 'SilpoDB.dbo.test3' does not have a primary key def
           <NavigationProperty Name="Orders" Relationship="Self.FK_Order_User_info" FromRole="Users" ToRole="Orders" />
           <NavigationProperty Name="Sell" Relationship="Self.FK_Sell_User" FromRole="Users" ToRole="Sell" />
         </EntityType>
-        <EntityType Name="test_check5">
-          <Key>
-            <PropertyRef Name="CustomerId" />
-          </Key>
-          <Property Name="CustomerId" Type="Int32" Nullable="false" />
-          <Property Name="CustomerRole" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-        </EntityType>
         <Association Name="FK_Bill_user_User_info">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
@@ -490,6 +515,18 @@ warning 6013: The table/view 'SilpoDB.dbo.test3' does not have a primary key def
             </Principal>
             <Dependent Role="Bill">
               <PropertyRef Name="ID_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProducerCats_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="ProducerCats" Type="Self.ProducerCats" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID_category" />
+            </Principal>
+            <Dependent Role="ProducerCats">
+              <PropertyRef Name="Id_category" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -553,6 +590,18 @@ warning 6013: The table/view 'SilpoDB.dbo.test3' does not have a primary key def
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProducerCats_Producer">
+          <End Role="Producer" Type="Self.Producer" Multiplicity="1" />
+          <End Role="ProducerCats" Type="Self.ProducerCats" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producer">
+              <PropertyRef Name="ID_producer" />
+            </Principal>
+            <Dependent Role="ProducerCats">
+              <PropertyRef Name="Id_producer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Product_Producer">
           <End Role="Producer" Type="Self.Producer" Multiplicity="0..1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
@@ -601,24 +650,27 @@ warning 6013: The table/view 'SilpoDB.dbo.test3' does not have a primary key def
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SilpoDBEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="SilpoDBEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Bill" EntityType="Self.Bill" />
           <EntitySet Name="Category" EntityType="Self.Category" />
           <EntitySet Name="Discount" EntityType="Self.Discount" />
           <EntitySet Name="Orders" EntityType="Self.Orders" />
           <EntitySet Name="Producer" EntityType="Self.Producer" />
+          <EntitySet Name="ProducerCats" EntityType="Self.ProducerCats" />
           <EntitySet Name="Product" EntityType="Self.Product" />
           <EntitySet Name="Sell" EntityType="Self.Sell" />
           <EntitySet Name="ShopBank" EntityType="Self.ShopBank" />
           <EntitySet Name="Storage" EntityType="Self.Storage" />
           <EntitySet Name="Supply" EntityType="Self.Supply" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="test" EntityType="Self.test" />
           <EntitySet Name="Users" EntityType="Self.Users" />
-          <EntitySet Name="test_check5" EntityType="Self.test_check5" />
           <AssociationSet Name="FK_Bill_user_User_info" Association="Self.FK_Bill_user_User_info">
             <End Role="Users" EntitySet="Users" />
             <End Role="Bill" EntitySet="Bill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProducerCats_Category" Association="Self.FK_ProducerCats_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="ProducerCats" EntitySet="ProducerCats" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
             <End Role="Category" EntitySet="Category" />
@@ -639,6 +691,10 @@ warning 6013: The table/view 'SilpoDB.dbo.test3' does not have a primary key def
           <AssociationSet Name="FK_Sell_Order" Association="Self.FK_Sell_Order">
             <End Role="Orders" EntitySet="Orders" />
             <End Role="Sell" EntitySet="Sell" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProducerCats_Producer" Association="Self.FK_ProducerCats_Producer">
+            <End Role="Producer" EntitySet="Producer" />
+            <End Role="ProducerCats" EntitySet="ProducerCats" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_Producer" Association="Self.FK_Product_Producer">
             <End Role="Producer" EntitySet="Producer" />
@@ -662,7 +718,7 @@ warning 6013: The table/view 'SilpoDB.dbo.test3' does not have a primary key def
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SilpoDBModelStoreContainer" CdmEntityContainer="SilpoDBEntities1">
+        <EntityContainerMapping StorageEntityContainer="SilpoDBModelStoreContainer" CdmEntityContainer="SilpoDBEntities2">
           <EntitySetMapping Name="Bill">
             <EntityTypeMapping TypeName="SilpoDBModel.Bill">
               <MappingFragment StoreEntitySet="Bill">
@@ -714,6 +770,15 @@ warning 6013: The table/view 'SilpoDB.dbo.test3' does not have a primary key def
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ProducerCats">
+            <EntityTypeMapping TypeName="SilpoDBModel.ProducerCats">
+              <MappingFragment StoreEntitySet="ProducerCats">
+                <ScalarProperty Name="ID_producer_cats" ColumnName="ID_producer_cats" />
+                <ScalarProperty Name="Id_producer" ColumnName="Id_producer" />
+                <ScalarProperty Name="Id_category" ColumnName="Id_category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Product">
             <EntityTypeMapping TypeName="SilpoDBModel.Product">
               <MappingFragment StoreEntitySet="Product">
@@ -747,6 +812,7 @@ warning 6013: The table/view 'SilpoDB.dbo.test3' does not have a primary key def
             <EntityTypeMapping TypeName="SilpoDBModel.Storage">
               <MappingFragment StoreEntitySet="Storage">
                 <ScalarProperty Name="ID_storage" ColumnName="ID_storage" />
+                <ScalarProperty Name="Id_product" ColumnName="Id_product" />
                 <ScalarProperty Name="id_supply" ColumnName="id_supply" />
                 <ScalarProperty Name="Available_items" ColumnName="Available_items" />
                 <ScalarProperty Name="FinalDate" ColumnName="FinalDate" />
@@ -777,14 +843,6 @@ warning 6013: The table/view 'SilpoDB.dbo.test3' does not have a primary key def
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="test">
-            <EntityTypeMapping TypeName="SilpoDBModel.test">
-              <MappingFragment StoreEntitySet="test">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="counts" ColumnName="counts" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="SilpoDBModel.Users">
               <MappingFragment StoreEntitySet="Users">
@@ -794,14 +852,6 @@ warning 6013: The table/view 'SilpoDB.dbo.test3' does not have a primary key def
                 <ScalarProperty Name="Role" ColumnName="Role" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="test_check5">
-            <EntityTypeMapping TypeName="SilpoDBModel.test_check5">
-              <MappingFragment StoreEntitySet="test_check5">
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-                <ScalarProperty Name="CustomerRole" ColumnName="CustomerRole" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

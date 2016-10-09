@@ -12,7 +12,7 @@ namespace Shop
 {
     public partial class AdminPanel : Form
     {
-        SilpoDBEntities1 db;
+        SilpoDBEntities2 db;
 
         public AdminPanel()
         {
@@ -27,7 +27,7 @@ namespace Shop
             }
 
 
-             db= new SilpoDBEntities1();
+             db= new SilpoDBEntities2();
             ProductForm pf = new ProductForm(db);
             
           
@@ -39,7 +39,7 @@ namespace Shop
         public AdminPanel(string a)
         {
             InitializeComponent();
-          db = new SilpoDBEntities1();
+          db = new SilpoDBEntities2();
 
 
            label_name.Text = db.Users.Where(x => x.Login == a).First().Full_name;

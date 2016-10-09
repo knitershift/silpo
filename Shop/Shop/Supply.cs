@@ -14,7 +14,6 @@ namespace Shop
     
     public partial class Supply
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Supply()
         {
             this.Storage = new HashSet<Storage>();
@@ -29,7 +28,6 @@ namespace Shop
         public System.DateTime Date_supply { get; set; }
     
         public virtual Product Product { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Storage> Storage { get; set; }
     }
 }
