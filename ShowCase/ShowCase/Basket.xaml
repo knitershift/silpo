@@ -1,0 +1,26 @@
+﻿<Window x:Class="ShowCase.Basket"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ShowCase"
+        mc:Ignorable="d"
+        Title="Basket" Height="431.955" Width="818.797">
+    <Grid>
+        <DataGrid x:Name="dataGrid_basket" IsReadOnly="True" Margin="0,49,0,64" HorizontalAlignment="Left" Width="811">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="№" Binding="{Binding number}"/>
+                <DataGridTextColumn Header="Назва" Binding="{Binding name}" Width="170"/>
+                <DataGridTextColumn Header="Ціна" Binding="{Binding price}" Width="90"/>
+                <DataGridTextColumn Header="Виробник" Binding="{Binding producer}" Width="150"/>
+                <DataGridTextColumn Header="Країна" Binding="{Binding country}" Width="100"/>
+                <DataGridTextColumn Header="Кількість" Binding="{Binding amount}" Width="70"/>
+                <DataGridTextColumn Header="Сума" Binding="{Binding suma}" Width="70"/>
+                <DataGridTextColumn Header="Видалити" Binding="{Binding b}" Width="70"/>
+            </DataGrid.Columns>
+
+        </DataGrid>
+        <Button x:Name="buttonToBuy" Content="Купити" HorizontalAlignment="Left" Margin="620,343,0,0" VerticalAlignment="Top" Width="152" Height="37"/>
+        <Button x:Name="buttonClear" Content="Очистити корзину" HorizontalAlignment="Left" Margin="47,343,0,0" VerticalAlignment="Top" Width="129" Height="37"/>
+    </Grid>
+</Window>
