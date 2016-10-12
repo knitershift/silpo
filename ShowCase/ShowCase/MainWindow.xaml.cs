@@ -29,8 +29,9 @@ namespace ShowCase
             InitializeComponent();
             dbSilpo = new SilpoDBEntities5();
             listIdProduct = new List<int>();
-            fillData();
+
             addButtonToGrid();
+            fillData();
 
         }
 
@@ -62,9 +63,17 @@ namespace ShowCase
                 // ---------
 
                 // get current Price
-                Prices price = (from s in dbSilpo.Prices  // не заповнено ще
-                                where s.idProduct == p.ID_product
-                                select s).SingleOrDefault<Prices>();
+                Prices price;
+                try
+                {
+                    price = (from s in dbSilpo.Prices
+                             where s.idProduct == p.ID_product
+                             select s).SingleOrDefault<Prices>();
+                }
+                catch (InvalidOperationException ex)
+                {
+                    price = dbSilpo.Prices.Where(x => x.idProduct == p.ID_product).ToArray().Last();
+                }
                 // ---------
                 double pr;
                 if (price == null)
@@ -72,6 +81,9 @@ namespace ShowCase
                 else
                     pr = (double)price.Price;
 
+                FrameworkElementFactory b1 = new FrameworkElementFactory(typeof(Button));
+               // b1.SetTextButton();
+                b1.SetValue(Button.ContentProperty, "qwerty");
                 row = new Row()
                 {
                     // в Tag записати Dictionary <int,int> - id, скільки є
@@ -81,7 +93,7 @@ namespace ShowCase
                     producer = producer.Name,
                     country = producer.Country,
                     price = pr,
-                    b = new FrameworkElementFactory(typeof(Button))
+                    b = b1
                 };
                 dataGrid_case.Items.Add(row);
             }
@@ -139,28 +151,28 @@ namespace ShowCase
                 Converter = new StatusToEnabledConverter()
             });
             // add extention method
-            Row row;
-            bool c = true;
-            for (int i = 0; i < dataGrid_case.Items.Count; i++)
-            {
-                c = true;
-                row = dataGrid_case.Items[i] as Row;
-                foreach (int u in listIdProduct)
-                {
-                    if (row.Tag == u)
-                    {
-                        buttonTemplate.SetValue(Button.ContentProperty, "Cancel");
-                        c = false;
-                        break;
-                    }
-                }
+            //Row row;
+            //bool c = true;
+            //for (int i = 0; i < dataGrid_case.Items.Count; i++)
+            //{
+            //    c = true;
+            //    row = dataGrid_case.Items[i] as Row;
+            //    foreach (int u in listIdProduct)
+            //    {
+            //        if (row.Tag == u)
+            //        {
+            //           buttonTemplate.SetValue(Button.ContentProperty, "Cancel");
+            //            c = false;
+            //            break;
+            //        }
+            //    }
 
-                if (c)
-                    buttonTemplate.SetValue(Button.ContentProperty, "To buy");
-            }
+            //    if (c)
+            buttonTemplate.SetValue(Button.ContentProperty, "To buy");
+            //}
 
 
-
+            //  buttonTemplate.SetTextButton(dataGrid_case,listIdProduct);
 
             buttonTemplate.AddHandler(
                 Button.ClickEvent,
@@ -186,6 +198,12 @@ namespace ShowCase
                 CellTemplate = new DataTemplate() { VisualTree = buttonTemplate }
             };
 
+        }
+
+        private void buttonAccount_Click(object sender, RoutedEventArgs e)
+        {
+            Loading lo = new Loading();
+            lo.Show();
         }
     }
 }

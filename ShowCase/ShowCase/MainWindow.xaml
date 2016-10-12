@@ -73,7 +73,7 @@
                 <ColumnDefinition Width="130"/>
                 <ColumnDefinition Width="67*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="buttonAccount" Content="Акаунт" Grid.Column="1" VerticalAlignment="Top" Height="37" FontFamily="Comic Sans MS" FontSize="18.667">
+            <Button x:Name="buttonAccount" Content="Акаунт" Grid.Column="1" VerticalAlignment="Top" Height="37" FontFamily="Comic Sans MS" FontSize="18.667" Click="buttonAccount_Click">
                 <Button.Background>
                     <RadialGradientBrush>
                         <GradientStop Color="#FFF3F3F3" Offset="1"/>
