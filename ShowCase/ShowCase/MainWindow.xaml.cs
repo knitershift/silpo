@@ -13,13 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Globalization;
+using MahApps.Metro.Controls;
 
 namespace ShowCase
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         SilpoDBEntities5 dbSilpo;
         List<int> listIdProduct;
@@ -27,10 +28,10 @@ namespace ShowCase
         public MainWindow()
         {
             InitializeComponent();
-            dbSilpo = new SilpoDBEntities5();
-            listIdProduct = new List<int>();
-            fillData();
-            addButtonToGrid();
+            //dbSilpo = new SilpoDBEntities5();
+            //listIdProduct = new List<int>();
+            //fillData();
+            //addButtonToGrid();
 
         }
 
@@ -186,6 +187,19 @@ namespace ShowCase
                 CellTemplate = new DataTemplate() { VisualTree = buttonTemplate }
             };
 
+        }
+
+        private void Image_Loaded(object sender, RoutedEventArgs e)
+        {
+            //Image img = sender as Image;
+            //BitmapImage bi3 = new BitmapImage();
+            //bi3.BeginInit();
+            //bi3.UriSource = new Uri("images/silpo.gif", UriKind.Relative);
+
+            //MessageBox.Show(bi3.UriSource.ToString());
+            //bi3.EndInit();
+            //img.Stretch = Stretch.Fill;
+            //img.Source = bi3;
         }
     }
 }
