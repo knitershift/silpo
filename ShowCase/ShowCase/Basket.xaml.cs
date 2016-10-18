@@ -19,14 +19,14 @@ namespace ShowCase
     /// </summary>
     public partial class Basket : Window
     {
-        private SilpoDBEntities5 dbSilpo;
+        private SilpoDBEntities dbSilpo;
 
         List<int> listIdProduct;
 
-        public Basket(List<int> listIdProduct)
+        public Basket(List<int> listIdProduct, SilpoDBEntities dbSilpo)
         {
             InitializeComponent();
-            dbSilpo = new SilpoDBEntities5();
+            this.dbSilpo = dbSilpo;
             this.listIdProduct = listIdProduct;
             addButtonToGrid();
             fillData();
@@ -40,8 +40,8 @@ namespace ShowCase
             int countProduct = dbSilpo.Product.Count();
             foreach (var p in listIdProduct)
             {
-               Product product= dbSilpo.Product.Where(x => x.ID_product == p).First();
-               
+                Product product = dbSilpo.Product.Where(x => x.ID_product == p).First();
+
                 // get name and country producer
                 Producer producer = (from tmp in dbSilpo.Producer
                                      where tmp.ID_producer == product.ID_producer
@@ -50,8 +50,8 @@ namespace ShowCase
 
                 // get current Price
                 Prices price = (from s in dbSilpo.Prices  // не заповнено ще
-                                 where s.idProduct == p
-                                 select s).SingleOrDefault<Prices>();
+                                where s.idProduct == p
+                                select s).SingleOrDefault<Prices>();
                 // ---------
 
                 // get current Supply
@@ -62,11 +62,13 @@ namespace ShowCase
 
                 double sum;
                 double pr;
-                if (price == null) {
+                if (price == null)
+                {
                     sum = 0;
                     pr = 0;
                 }
-                else {
+                else
+                {
                     sum = (double)price.Price * 1;
                     pr = (double)price.Price;
                 }
@@ -80,7 +82,7 @@ namespace ShowCase
                     amount = 1,
                     suma = sum,
                     b = new FrameworkElementFactory(typeof(Button)),
-                    allAmount= supply.Amount
+                    allAmount = supply.Amount
                 };
                 dataGrid_basket.Items.Add(row);
             }
@@ -121,6 +123,17 @@ namespace ShowCase
 
         }
 
+        private void buttonClear_Click(object sender, RoutedEventArgs e)
+        {
+            listIdProduct.Clear();
+            dataGrid_basket.Items.Clear();
+        }
 
+        private void buttonToBuy_Click(object sender, RoutedEventArgs e)
+        {
+
+            // що там тут з чеком і історією
+
+        }
     }
 }

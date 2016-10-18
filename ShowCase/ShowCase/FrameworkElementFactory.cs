@@ -30,32 +30,13 @@ namespace ShowCase
         }
     }
 
-
     public static class FrameworkElementFactoryExtension
     {
-        public static void SetTextButton(this FrameworkElementFactory b) {
+        public static void SetTextButton(this FrameworkElementFactory b)
+        {
 
-              b.SetValue(Button.ContentProperty, "Extention");
-
-            //Row row;
-            //bool c = true;
-            //for (int i = 0; i < dataGrid_case.Items.Count; i++)
-            //{
-            //    c = true;
-            //    row = dataGrid_case.Items[i] as Row;
-            //    foreach (int u in listIdProduct)
-            //    {
-            //        if (row.Tag == u)
-            //        {
-            //            b.SetValue(Button.ContentProperty, "Cancel");
-            //            c = false;
-            //            break;
-            //        }
-            //    }
-
-            //    if (c)
-            //        b.SetValue(Button.ContentProperty, "To buy");
-            //}
+            b.SetValue(Button.ContentProperty, "Extention");
         }
     }
-}
+
+        }

@@ -13,77 +13,89 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Globalization;
+using MahApps.Metro.Controls;
 
 namespace ShowCase
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
-        SilpoDBEntities5 dbSilpo;
+        SilpoDBEntities dbSilpo;
         List<int> listIdProduct;
+        List<int> idAvailableProducts;
+        private Users user;
 
-        public MainWindow()
+        public MainWindow(SilpoDBEntities dbSilpo, Users user)
         {
-            InitializeComponent();
-            dbSilpo = new SilpoDBEntities5();
-            listIdProduct = new List<int>();
+            this.InitializeComponent();
+                this.dbSilpo = dbSilpo;
+                listIdProduct = new List<int>();
+                this.user = user;
 
+            this.labelUserName.Content = user.Full_name + "!";
+                fillData();
             addButtonToGrid();
-            fillData();
 
         }
 
         private void fillData()
         {
-            // add categories
-            foreach (var u in dbSilpo.Category)
+            // Fill categories list
+            foreach (var c in dbSilpo.Category)
             {
                 ListViewItem itm = new ListViewItem();
-                itm.Content = u.Name;
-                itm.Tag = u.ID_category;
-                listViewCategory.Items.Add(itm);
+                itm.Content = c.Name;
+                itm.Tag = c.ID_category;
+                this.listViewCategory.Items.Add(itm);
             }
 
             Row row;
             int i = 0;
             int countProduct = dbSilpo.Product.Count();
+
             labelCountProduct.Content = countProduct.ToString();
-            labelNameCategory.Content = "All category";
+            labelNameCategory.Content = "Всі";
+
+            //** добути товари які на складі **//
+
+            idAvailableProducts = new List<int>(); // id доступних товарів
+
+            var storage = dbSilpo.Storage.Where(s => s.FinalDate < DateTime.Now && s.Available_items > 0);
+
+            foreach (var s in storage){
+                int id = dbSilpo.Product.Where(p => p.ID_product == s.Id_product).First().ID_product;
+                if(!idAvailableProducts.Contains(id))
+                    idAvailableProducts.Add(id);
+            }
+
             foreach (var p in dbSilpo.Product)
-            {
-                //if (DateTime.Now > p.Expiry_time) // перевірка терміну придатності
-                //    return;
+            {   
+                if (!idAvailableProducts.Contains(p.ID_product))
+                    continue;
 
                 // get name and country producer
                 Producer producer = (from tmp in dbSilpo.Producer
                                      where tmp.ID_producer == p.ID_producer
                                      select tmp).SingleOrDefault<Producer>();
-                // ---------
 
                 // get current Price
-                Prices price;
+                double pr;
                 try
                 {
-                    price = (from s in dbSilpo.Prices
-                             where s.idProduct == p.ID_product
-                             select s).SingleOrDefault<Prices>();
-                }
-                catch (InvalidOperationException ex)
-                {
-                    price = dbSilpo.Prices.Where(x => x.idProduct == p.ID_product).ToArray().Last();
-                }
-                // ---------
-                double pr;
-                if (price == null)
-                    pr = p.ID_product;
-                else
-                    pr = (double)price.Price;
+                    Prices price = (from s in dbSilpo.Prices.ToList()  // не заповнено ще
+                                    where s.idProduct == p.ID_product
+                                    select s).Last();
 
-                FrameworkElementFactory b1 = new FrameworkElementFactory(typeof(Button));
-               // b1.SetTextButton();
-                b1.SetValue(Button.ContentProperty, "qwerty");
+                    if (price == null)
+                        pr = p.ID_product;
+                    else
+                        pr = (double)price.Price;
+                }
+
+                catch { pr = 0; };                          
+
                 row = new Row()
                 {
                     // в Tag записати Dictionary <int,int> - id, скільки є
@@ -93,8 +105,9 @@ namespace ShowCase
                     producer = producer.Name,
                     country = producer.Country,
                     price = pr,
-                    b = b1
+                    b = new FrameworkElementFactory(typeof(Button))
                 };
+
                 dataGrid_case.Items.Add(row);
             }
 
@@ -102,13 +115,15 @@ namespace ShowCase
 
         private void buttonToBasket_Click(object sender, RoutedEventArgs e)
         {
-            Basket bs = new Basket(listIdProduct);
+            //Відкрити корзину
+            Basket bs = new Basket(listIdProduct, dbSilpo);
             bs.ShowDialog();
         }
 
         private void listViewCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             dataGrid_case.Items.Clear();
+
             ListViewItem itm = listViewCategory.SelectedItem as ListViewItem;
 
             int idCat = (int)itm.Tag;
@@ -117,24 +132,43 @@ namespace ShowCase
             labelCountProduct.Content = countProduct.ToString();
             labelNameCategory.Content = itm.Content.ToString();
 
-            Row row;
+            
             int i = 0;
             foreach (var p in dbSilpo.Product)
             {
-                if (p.ID_category == idCat)
+                if (!idAvailableProducts.Contains(p.ID_product))
+                    continue;
+
+                    if (p.ID_category == idCat)
                 {
                     Producer producer = (from tmp in dbSilpo.Producer
                                          where tmp.ID_producer == p.ID_producer
                                          select tmp).SingleOrDefault<Producer>();
 
-                    row = new Row()
+
+                    double pr;
+                    try
+                    {
+                        Prices price = (from s in dbSilpo.Prices.ToList()  // не заповнено ще
+                                        where s.idProduct == p.ID_product
+                                        select s).Last();
+
+                        if (price == null)
+                            pr = p.ID_product;
+                        else
+                            pr = (double)price.Price;
+                    }
+
+                    catch { pr = 0; };
+
+                    Row row = new Row() 
                     {
                         Tag = p.ID_product,
                         number = 1 + i++,
                         name = p.Name,
                         producer = producer.Name,
                         country = producer.Country,
-                        price = 404,
+                        price = pr, //ВКАЗАТИ ЦІНУ ТУТ
                         b = new FrameworkElementFactory(typeof(Button))
                     };
                     dataGrid_case.Items.Add(row);
@@ -150,48 +184,35 @@ namespace ShowCase
             {
                 Converter = new StatusToEnabledConverter()
             });
-            // add extention method
-            //Row row;
-            //bool c = true;
-            //for (int i = 0; i < dataGrid_case.Items.Count; i++)
-            //{
-            //    c = true;
-            //    row = dataGrid_case.Items[i] as Row;
-            //    foreach (int u in listIdProduct)
-            //    {
-            //        if (row.Tag == u)
-            //        {
-            //           buttonTemplate.SetValue(Button.ContentProperty, "Cancel");
-            //            c = false;
-            //            break;
-            //        }
-            //    }
 
-            //    if (c)
-            buttonTemplate.SetValue(Button.ContentProperty, "To buy");
-            //}
+            //Якщо товар вже є у корзині напис буде "забрати", а ні то - "купити"
+            for (int i = 0; i < dataGrid_case.Items.Count; i++)
+            {
+                Row currRow = dataGrid_case.Items[i] as Row;
 
+                buttonTemplate.SetValue(Button.ContentProperty, 
+                    listIdProduct.Contains(currRow.Tag) ? "Забрати" : "Купити");
+            }
 
-            //  buttonTemplate.SetTextButton(dataGrid_case,listIdProduct);
-
-            buttonTemplate.AddHandler(
-                Button.ClickEvent,
+            buttonTemplate.AddHandler(Button.ClickEvent,
                 new RoutedEventHandler((o, e) =>
                 {
-                    Row rowTmp = dataGrid_case.SelectedItem as Row;
+                    Row selectedRow = dataGrid_case.SelectedItem as Row;
+                    Button btn = o as Button;
 
-                    if ((o as Button).Content.ToString() == "Cancel")
+                    if (btn.Content.ToString() == "Забрати")
                     {
-                        listIdProduct.Remove(rowTmp.Tag);
-                        (o as Button).Content = "To buy";
+                        btn.Content = "Купити";
+                        listIdProduct.Remove(selectedRow.Tag);
                     }
                     else
                     {
-                        (o as Button).Content = "Cancel";
-                        listIdProduct.Add(rowTmp.Tag);
+                        btn.Content = "Забрати";
+                        listIdProduct.Add(selectedRow.Tag);
                     }
-                })
-            );
+                }));
+
+            //заголовок колонки "купити"
             dataGrid_case.Columns[5] = new DataGridTemplateColumn()
             {
                 Header = "Купити",
@@ -202,8 +223,8 @@ namespace ShowCase
 
         private void buttonAccount_Click(object sender, RoutedEventArgs e)
         {
-            Loading lo = new Loading();
-            lo.Show();
+            Account ac = new Account(user, dbSilpo);
+            ac.ShowDialog();
         }
     }
 }
