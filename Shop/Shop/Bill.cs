@@ -14,10 +14,10 @@ namespace Shop
     
     public partial class Bill
     {
-        public int Id_bill { get; set; }
+        public int idBill { get; set; }
+        public int ID_User { get; set; }
         public int Balance { get; set; }
         public int Bonus { get; set; }
-        public int ID_user { get; set; }
     
         public virtual Users Users { get; set; }
     }

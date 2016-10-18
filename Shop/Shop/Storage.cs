@@ -15,6 +15,7 @@ namespace Shop
     public partial class Storage
     {
         public int ID_storage { get; set; }
+        public int Id_product { get; set; }
         public int id_supply { get; set; }
         public int Available_items { get; set; }
         public System.DateTime FinalDate { get; set; }

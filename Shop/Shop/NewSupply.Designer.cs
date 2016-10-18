@@ -57,10 +57,12 @@
             // 
             // numeric_price
             // 
+            this.numeric_price.DecimalPlaces = 2;
             this.numeric_price.Location = new System.Drawing.Point(165, 151);
             this.numeric_price.Name = "numeric_price";
             this.numeric_price.Size = new System.Drawing.Size(286, 20);
             this.numeric_price.TabIndex = 1;
+            this.numeric_price.UseWaitCursor = true;
             // 
             // numeric_markup
             // 
@@ -78,16 +80,16 @@
             // 
             // dateTime_made
             // 
-            this.dateTime_made.Location = new System.Drawing.Point(165, 300);
+            this.dateTime_made.Location = new System.Drawing.Point(78, 323);
             this.dateTime_made.Name = "dateTime_made";
-            this.dateTime_made.Size = new System.Drawing.Size(286, 20);
+            this.dateTime_made.Size = new System.Drawing.Size(163, 20);
             this.dateTime_made.TabIndex = 4;
             // 
             // dateTime_supply
             // 
-            this.dateTime_supply.Location = new System.Drawing.Point(165, 364);
+            this.dateTime_supply.Location = new System.Drawing.Point(287, 323);
             this.dateTime_supply.Name = "dateTime_supply";
-            this.dateTime_supply.Size = new System.Drawing.Size(286, 20);
+            this.dateTime_supply.Size = new System.Drawing.Size(164, 20);
             this.dateTime_supply.TabIndex = 5;
             // 
             // label1
@@ -104,11 +106,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(93, 177);
+            this.label2.Location = new System.Drawing.Point(74, 176);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 21);
+            this.label2.Size = new System.Drawing.Size(85, 21);
             this.label2.TabIndex = 7;
-            this.label2.Text = "Націнка";
+            this.label2.Text = "Націнка %";
             // 
             // label3
             // 
@@ -124,7 +126,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(7, 300);
+            this.label4.Location = new System.Drawing.Point(77, 286);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(152, 21);
             this.label4.TabIndex = 9;
@@ -134,7 +136,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Bold);
-            this.label5.Location = new System.Drawing.Point(40, 364);
+            this.label5.Location = new System.Drawing.Point(283, 286);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(119, 21);
             this.label5.TabIndex = 10;
@@ -165,7 +167,7 @@
             this.but_ok.BackColor = System.Drawing.Color.DarkCyan;
             this.but_ok.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Bold);
             this.but_ok.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.but_ok.Location = new System.Drawing.Point(188, 428);
+            this.but_ok.Location = new System.Drawing.Point(174, 400);
             this.but_ok.Name = "but_ok";
             this.but_ok.Size = new System.Drawing.Size(189, 51);
             this.but_ok.TabIndex = 13;

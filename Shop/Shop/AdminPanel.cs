@@ -8,11 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Globalization;
+using MaterialSkin;
+using MaterialSkin.Controls;
 namespace Shop
 {
-    public partial class AdminPanel : Form
+    public partial class AdminPanel : MaterialForm
     {
-        SilpoDBEntities1 db;
+        SilpoDBEntities db;
 
         public AdminPanel()
         {
@@ -27,19 +29,20 @@ namespace Shop
             }
 
 
-             db= new SilpoDBEntities1();
+             db= new SilpoDBEntities();
             ProductForm pf = new ProductForm(db);
-            
-          
 
-        
-    }
+            var skinmanager = MaterialSkinManager.Instance;
+            skinmanager.AddFormToManage(this);
+            skinmanager.Theme = MaterialSkinManager.Themes.DARK;
+            skinmanager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+        }
 
 
         public AdminPanel(string a)
         {
             InitializeComponent();
-          db = new SilpoDBEntities1();
+          db = new SilpoDBEntities();
 
 
            label_name.Text = db.Users.Where(x => x.Login == a).First().Full_name;
@@ -52,6 +55,11 @@ namespace Shop
                 var culture = new CultureInfo(cultureName);
               label_data.Text = localDate.ToString(culture);
             }
+
+            var skinmanager = MaterialSkinManager.Instance;
+            skinmanager.AddFormToManage(this);
+            skinmanager.Theme = MaterialSkinManager.Themes.DARK;
+            skinmanager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
 
         }
 
@@ -74,10 +82,29 @@ namespace Shop
             SignIn sn = new SignIn();
             sn.ShowDialog();
         }
+        private void but_storage_Click(object sender, EventArgs e)
+        {
+            StorageForm storage = new StorageForm(db);
+            storage.ShowDialog();
 
-        private void but_producer_Click(object sender, EventArgs e)
+        }
+
+        private void but_balance_Click(object sender, EventArgs e)
+        {
+            BalanceForm bl = new BalanceForm();
+            bl.ShowDialog();
+
+        }
+
+        private void but_Exit_MouseHover(object sender, EventArgs e)
         {
 
+            but_Exit.BackColor = Color.Red;    
+        }
+
+        private void but_Exit_MouseLeave(object sender, EventArgs e)
+        {
+            but_Exit.BackColor = Color.WhiteSmoke; 
         }
     }
 }

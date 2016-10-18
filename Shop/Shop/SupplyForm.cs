@@ -13,14 +13,14 @@ namespace Shop
 {
     public partial class SupplyForm : Form
     {
-        SilpoDBEntities1 db;
+        SilpoDBEntities db;
         ListViewItem listItem;
         public SupplyForm()
         {
             InitializeComponent();
-           
+            but_delete.Enabled = false;
 
-             db = new SilpoDBEntities1();
+            db = new SilpoDBEntities();
              FillDB();
          
         }
@@ -37,10 +37,7 @@ namespace Shop
             }
         }
 
-        private void listView_supply_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+       
         private void FillDB() {
             using (new CursorEx())
             {
@@ -49,7 +46,7 @@ namespace Shop
 
                     listItem = new ListViewItem();
                     listItem = listView_supply.Items.Add(j.ID_supply.ToString());
-                    listItem.SubItems.Add(db.Product.Where(x => x.ID_prod == j.Id_product).First().Name);
+                    listItem.SubItems.Add(db.Product.Where(x => x.ID_product == j.Id_product).First().Name);
                     listItem.SubItems.Add(j.Price.ToString());
                     listItem.SubItems.Add(j.MarkUp.ToString());
                     listItem.SubItems.Add(j.Amount.ToString());
@@ -57,6 +54,7 @@ namespace Shop
                     listItem.SubItems.Add(j.Date_supply.ToString());
                    
                 }
+                but_delete.Enabled = false;
             }        
         }
         private void but_add_Click(object sender, EventArgs e)
@@ -92,7 +90,7 @@ namespace Shop
             foreach (var p in pr)
             {
                 listItem = listView_supply.Items.Add(p.ID_supply.ToString());
-                listItem.SubItems.Add(db.Product.Where(x => x.ID_prod == p.Id_product).First().Name);
+                listItem.SubItems.Add(db.Product.Where(x => x.ID_product == p.Id_product).First().Name);
                 listItem.SubItems.Add(p.Price.ToString());
                 listItem.SubItems.Add(p.MarkUp.ToString());
                 listItem.SubItems.Add(p.Amount.ToString());
@@ -100,6 +98,47 @@ namespace Shop
                 listItem.SubItems.Add(p.Date_supply.ToString());
 
             }
+        }
+
+        private void listView_supply_Click(object sender, EventArgs e)
+        {
+
+            string str = listView_supply.SelectedItems[0].Text;
+            if (str != null)
+            {
+                but_delete.Enabled = true;
+
+            }
+            else
+            {
+                but_delete.Enabled = false;
+            }
+        }
+
+        private void combo_month_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+
+            listView_supply.Items.Clear();
+            int month = Int32.Parse(combo_month.Text);
+            List<Supply> pr = db.Supply.Where(a => a.Date_supply.Month==month).ToList();
+
+            foreach (var j in pr)
+            {
+
+                listItem = new ListViewItem();
+                listItem = listView_supply.Items.Add(j.ID_supply.ToString());
+                listItem.SubItems.Add(db.Product.Where(x => x.ID_product == j.Id_product).First().Name);
+                listItem.SubItems.Add(j.Price.ToString());
+                listItem.SubItems.Add(j.MarkUp.ToString());
+                listItem.SubItems.Add(j.Amount.ToString());
+                listItem.SubItems.Add(j.Date_made.ToString());
+                listItem.SubItems.Add(j.Date_supply.ToString());
+
+            }
+
+
+
         }
     }
 }
