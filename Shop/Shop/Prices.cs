@@ -12,22 +12,13 @@ namespace Shop
     using System;
     using System.Collections.Generic;
     
-    public partial class Supply
+    public partial class Prices
     {
-        public Supply()
-        {
-            this.Storage = new HashSet<Storage>();
-        }
-    
-        public int ID_supply { get; set; }
-        public int Id_product { get; set; }
+        public int idPrice { get; set; }
+        public int idProduct { get; set; }
         public decimal Price { get; set; }
-        public int MarkUp { get; set; }
-        public int Amount { get; set; }
-        public System.DateTime Date_made { get; set; }
-        public System.DateTime Date_supply { get; set; }
+        public System.DateTime Date { get; set; }
     
         public virtual Product Product { get; set; }
-        public virtual ICollection<Storage> Storage { get; set; }
     }
 }

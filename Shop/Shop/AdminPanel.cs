@@ -14,7 +14,11 @@ namespace Shop
 {
     public partial class AdminPanel : MaterialForm
     {
+<<<<<<< HEAD
         SilpoDBEntities db;
+=======
+        SilpoDBEntities2 db;
+>>>>>>> 0ff800bd4265e19416227d2fb40d8c496dedd282
 
         public AdminPanel()
         {
@@ -29,7 +33,11 @@ namespace Shop
             }
 
 
+<<<<<<< HEAD
              db= new SilpoDBEntities();
+=======
+             db= new SilpoDBEntities2();
+>>>>>>> 0ff800bd4265e19416227d2fb40d8c496dedd282
             ProductForm pf = new ProductForm(db);
 
             var skinmanager = MaterialSkinManager.Instance;
@@ -42,7 +50,11 @@ namespace Shop
         public AdminPanel(string a)
         {
             InitializeComponent();
+<<<<<<< HEAD
           db = new SilpoDBEntities();
+=======
+          db = new SilpoDBEntities2();
+>>>>>>> 0ff800bd4265e19416227d2fb40d8c496dedd282
 
 
            label_name.Text = db.Users.Where(x => x.Login == a).First().Full_name;

@@ -13,14 +13,22 @@ namespace Shop
 {
     public partial class SupplyForm : Form
     {
+<<<<<<< HEAD
         SilpoDBEntities db;
+=======
+        SilpoDBEntities2 db;
+>>>>>>> 0ff800bd4265e19416227d2fb40d8c496dedd282
         ListViewItem listItem;
         public SupplyForm()
         {
             InitializeComponent();
             but_delete.Enabled = false;
 
+<<<<<<< HEAD
             db = new SilpoDBEntities();
+=======
+             db = new SilpoDBEntities2();
+>>>>>>> 0ff800bd4265e19416227d2fb40d8c496dedd282
              FillDB();
          
         }

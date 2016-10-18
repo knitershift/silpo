@@ -14,7 +14,6 @@ namespace Shop
     
     public partial class Category
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Category()
         {
             this.ProducerCats = new HashSet<ProducerCats>();
@@ -24,9 +23,13 @@ namespace Shop
         public int ID_category { get; set; }
         public string Name { get; set; }
     
+<<<<<<< HEAD
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProducerCats> ProducerCats { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+=======
+        public virtual ICollection<ProducerCats> ProducerCats { get; set; }
+>>>>>>> 0ff800bd4265e19416227d2fb40d8c496dedd282
         public virtual ICollection<Product> Product { get; set; }
     }
 }

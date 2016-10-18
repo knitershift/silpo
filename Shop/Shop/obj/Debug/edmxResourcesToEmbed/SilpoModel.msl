@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+<<<<<<< HEAD
   <EntityContainerMapping StorageEntityContainer="SilpoDBModelStoreContainer" CdmEntityContainer="SilpoDBEntities">
+=======
+  <EntityContainerMapping StorageEntityContainer="SilpoDBModelStoreContainer" CdmEntityContainer="SilpoDBEntities2">
+>>>>>>> 0ff800bd4265e19416227d2fb40d8c496dedd282
     <EntitySetMapping Name="Bill">
       <EntityTypeMapping TypeName="SilpoDBModel.Bill">
         <MappingFragment StoreEntitySet="Bill">

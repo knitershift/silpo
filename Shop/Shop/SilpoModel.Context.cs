@@ -13,10 +13,17 @@ namespace Shop
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
+<<<<<<< HEAD
     public partial class SilpoDBEntities : DbContext
     {
         public SilpoDBEntities()
             : base("name=SilpoDBEntities")
+=======
+    public partial class SilpoDBEntities2 : DbContext
+    {
+        public SilpoDBEntities2()
+            : base("name=SilpoDBEntities2")
+>>>>>>> 0ff800bd4265e19416227d2fb40d8c496dedd282
         {
         }
     

@@ -132,6 +132,25 @@
     <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Password" Type="nvarchar" MaxLength="30" Nullable="false" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SilpoDB.dbo.Аркуш' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Аркуш">
+          <Property Name="номер" Type="float" />
+          <Property Name="k" Type="nvarchar" MaxLength="255" />
+          <Property Name="k1" Type="float" />
+          <Property Name="l" Type="float" />
+          <Property Name="g" Type="float" />
+          <Property Name="g1" Type="float" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SilpoDB.dbo.Аркуш2' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Аркуш2">
+          <Property Name="номер" Type="float" />
+          <Property Name="k" Type="nvarchar" MaxLength="255" />
+          <Property Name="l" Type="float" />
+          <Property Name="g" Type="float" />
+          <Property Name="g1" Type="float" />
+        </EntityType>-->
   <Association Name="FK_Bill_user_User_info">
     <End Role="Users" Type="Self.Users" Multiplicity="1" />
     <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
@@ -189,6 +208,30 @@
       </Principal>
       <Dependent Role="Prices">
         <PropertyRef Name="idProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProducerCats_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="ProducerCats" Type="Self.ProducerCats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="ID_category" />
+      </Principal>
+      <Dependent Role="ProducerCats">
+        <PropertyRef Name="Id_category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProducerCats_Producer">
+    <End Role="Producer" Type="Self.Producer" Multiplicity="1" />
+    <End Role="ProducerCats" Type="Self.ProducerCats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producer">
+        <PropertyRef Name="ID_producer" />
+      </Principal>
+      <Dependent Role="ProducerCats">
+        <PropertyRef Name="Id_producer" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -319,10 +362,13 @@
       <End Role="Users" EntitySet="Users" />
       <End Role="Orders" EntitySet="Orders" />
     </AssociationSet>
+<<<<<<< HEAD
     <AssociationSet Name="FK_Prices_Product" Association="Self.FK_Prices_Product">
       <End Role="Product" EntitySet="Product" />
       <End Role="Prices" EntitySet="Prices" />
     </AssociationSet>
+=======
+>>>>>>> 0ff800bd4265e19416227d2fb40d8c496dedd282
     <AssociationSet Name="FK_ProducerCats_Category" Association="Self.FK_ProducerCats_Category">
       <End Role="Category" EntitySet="Category" />
       <End Role="ProducerCats" EntitySet="ProducerCats" />

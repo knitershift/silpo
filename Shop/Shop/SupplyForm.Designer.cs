@@ -41,6 +41,22 @@
             this.combo_month = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
+<<<<<<< HEAD
+=======
+            // but_delete
+            // 
+            this.but_delete.BackColor = System.Drawing.Color.FloralWhite;
+            this.but_delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.but_delete.ForeColor = System.Drawing.Color.DarkRed;
+            this.but_delete.Location = new System.Drawing.Point(653, 75);
+            this.but_delete.Name = "but_delete";
+            this.but_delete.Size = new System.Drawing.Size(94, 59);
+            this.but_delete.TabIndex = 5;
+            this.but_delete.Text = "Видалити";
+            this.but_delete.UseVisualStyleBackColor = false;
+            this.but_delete.Click += new System.EventHandler(this.but_delete_Click);
+            // 
+>>>>>>> 0ff800bd4265e19416227d2fb40d8c496dedd282
             // but_add
             // 
             this.but_add.BackColor = System.Drawing.Color.Cornsilk;

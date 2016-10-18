@@ -31,7 +31,11 @@ namespace Shop
         }
         private void button_signIn_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             SilpoDBEntities db = new SilpoDBEntities();
+=======
+            SilpoDBEntities2 db = new SilpoDBEntities2();
+>>>>>>> 0ff800bd4265e19416227d2fb40d8c496dedd282
 
 
             using (new CursorEx())

@@ -14,10 +14,17 @@ namespace Shop
     public partial class ProductForm : Form
     {        
         string str = null;     
+<<<<<<< HEAD
         SilpoDBEntities db;
         bool a = false;
       
         public ProductForm(SilpoDBEntities db1)
+=======
+        SilpoDBEntities2 db;
+        
+        ListViewItem listItem = new ListViewItem();
+        public ProductForm(SilpoDBEntities2 db1)
+>>>>>>> 0ff800bd4265e19416227d2fb40d8c496dedd282
         {
             InitializeComponent();
             this.db = db1;
@@ -120,18 +127,37 @@ namespace Shop
        
         private void textBox_search_TextChanged(object sender, EventArgs e)
         {
+<<<<<<< HEAD
 
            
+=======
+          using (new CursorEx())
+           {
+>>>>>>> 0ff800bd4265e19416227d2fb40d8c496dedd282
 
                 using (new CursorEx())
                 {
 
                     listView_product.Items.Clear();
 
+<<<<<<< HEAD
                     List<Product> pr = db.Product.Where(a => a.Name.StartsWith(textBox_search.Text)).ToList();
 
+=======
 
+           
+               foreach (var p in pr)
+               {
+                   listItem = listView_product.Items.Add(p.ID_prod.ToString());
+                   listItem.SubItems.Add(p.Name);
+                   listItem.SubItems.Add(p.Expiry_time.ToString());
+                   listItem.SubItems.Add(db.Category.Where(x => x.ID_category == p.ID_category).First().Name);
+                   listItem.SubItems.Add(db.Producer.Where(x => x.ID_producer == p.ID_producer).First().Name);
+>>>>>>> 0ff800bd4265e19416227d2fb40d8c496dedd282
 
+               }
+
+<<<<<<< HEAD
                     foreach (var p in pr)
                     {
                         ListViewItem listItem = new ListViewItem();
@@ -140,6 +166,9 @@ namespace Shop
                         listItem.SubItems.Add(p.Expiry_time.ToString());
                         listItem.SubItems.Add(db.Category.Where(x => x.ID_category == p.ID_category).First().Name);
                         listItem.SubItems.Add(db.Producer.Where(x => x.ID_producer == p.ID_producer).First().Name);
+=======
+           }
+>>>>>>> 0ff800bd4265e19416227d2fb40d8c496dedd282
 
 
 

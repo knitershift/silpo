@@ -103,6 +103,7 @@ C:\Users\Dima\Desktop\silpo\Shop\Shop\obj\Debug\Shop.csproj.GenerateResource.Cac
 C:\Users\Dima\Desktop\silpo\Shop\Shop\obj\Debug\Shop.exe
 C:\Users\Dima\Desktop\silpo\Shop\Shop\obj\Debug\Shop.pdb
 C:\Users\Dima\Desktop\silpo\Shop\Shop\bin\Debug\Shop.pdb
+<<<<<<< HEAD
 K:\Командний проект\Новая папка\silpo\Shop\Shop\bin\Debug\Shop.exe.config
 K:\Командний проект\Новая папка\silpo\Shop\Shop\obj\Debug\Shop.exe
 K:\Командний проект\Новая папка\silpo\Shop\Shop\obj\Debug\Shop.pdb
@@ -132,3 +133,5 @@ C:\Users\Dima\Desktop\silpo\Shop\Shop\bin\Debug\MaterialSkin.dll
 C:\Users\Dima\Desktop\silpo\Shop\Shop\obj\Debug\Shop.csprojResolveAssemblyReference.cache
 C:\Users\Dima\Desktop\silpo\Shop\Shop\obj\Debug\Shop.BalanceForm.resources
 C:\Users\Dima\Desktop\silpo\Shop\Shop\obj\Debug\Shop.StorageForm.resources
+=======
+>>>>>>> 0ff800bd4265e19416227d2fb40d8c496dedd282

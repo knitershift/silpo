@@ -14,7 +14,6 @@ namespace Shop
     
     public partial class Producer
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Producer()
         {
             this.ProducerCats = new HashSet<ProducerCats>();
@@ -25,9 +24,13 @@ namespace Shop
         public string Name { get; set; }
         public string Country { get; set; }
     
+<<<<<<< HEAD
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProducerCats> ProducerCats { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+=======
+        public virtual ICollection<ProducerCats> ProducerCats { get; set; }
+>>>>>>> 0ff800bd4265e19416227d2fb40d8c496dedd282
         public virtual ICollection<Product> Product { get; set; }
     }
 }

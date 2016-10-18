@@ -12,8 +12,13 @@ namespace Shop
 {
     public partial class NewSupply : Form
     {
+<<<<<<< HEAD
         bool pr = false;
         SilpoDBEntities db = new SilpoDBEntities();
+=======
+
+        SilpoDBEntities2 db = new SilpoDBEntities2();
+>>>>>>> 0ff800bd4265e19416227d2fb40d8c496dedd282
         public NewSupply()
         {
             InitializeComponent();
@@ -32,8 +37,13 @@ namespace Shop
 
         private void but_ok_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             SilpoDBEntities db = new SilpoDBEntities();
             int id = db.Product.Where(x => x.Name == combo_prod.Text).First().ID_product;
+=======
+            SilpoDBEntities2 db = new SilpoDBEntities2();
+            int id = db.Product.Where(x => x.Name == combo_prod.Text).First().ID_prod;
+>>>>>>> 0ff800bd4265e19416227d2fb40d8c496dedd282
 
             
             Supply supply = new Supply()

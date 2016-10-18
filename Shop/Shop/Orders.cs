@@ -14,7 +14,6 @@ namespace Shop
     
     public partial class Orders
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Orders()
         {
             this.Sell = new HashSet<Sell>();
@@ -30,7 +29,6 @@ namespace Shop
     
         public virtual Product Product { get; set; }
         public virtual Users Users { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sell> Sell { get; set; }
     }
 }

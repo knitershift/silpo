@@ -24,7 +24,11 @@ namespace Shop
         public String[] country = null;
         private void Admin_Load(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             SilpoDBEntities db = new SilpoDBEntities();
+=======
+            SilpoDBEntities2 db = new SilpoDBEntities2();
+>>>>>>> 0ff800bd4265e19416227d2fb40d8c496dedd282
             foreach (var i in db.Category) {
                 combo_category.Items.Add(i.Name);         
             }
@@ -48,7 +52,11 @@ namespace Shop
             }
             else { 
            // MessageBox.Show(combo_category.Text + "  " + combo_producer.Text + "  " + text_name.Text + " " + text_amount.Text + " " + numeric_datedie.Value);
+<<<<<<< HEAD
             SilpoDBEntities db = new SilpoDBEntities();
+=======
+            SilpoDBEntities2 db = new SilpoDBEntities2();
+>>>>>>> 0ff800bd4265e19416227d2fb40d8c496dedd282
 
                
                 Product product = new Product()
