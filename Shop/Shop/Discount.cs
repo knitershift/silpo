@@ -15,7 +15,7 @@ namespace Shop
     public partial class Discount
     {
         public int Id_discount { get; set; }
-        public int Id_prod { get; set; }
+        public int Id_product { get; set; }
         public int Percent { get; set; }
         public System.DateTime Start { get; set; }
         public System.DateTime End { get; set; }

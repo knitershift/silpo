@@ -12,16 +12,19 @@ namespace Shop
 {
     public partial class NewProduct : Form
     {
-        public NewProduct()
+
+        bool a1;
+        public NewProduct(ref bool a)
         {
             InitializeComponent();
+            a1 = a;
         }
         public String[] categ = null;
         public String[] producer = null;
         public String[] country = null;
         private void Admin_Load(object sender, EventArgs e)
         {
-            SilpoDBEntities1 db = new SilpoDBEntities1();
+            SilpoDBEntities db = new SilpoDBEntities();
             foreach (var i in db.Category) {
                 combo_category.Items.Add(i.Name);         
             }
@@ -45,7 +48,7 @@ namespace Shop
             }
             else { 
            // MessageBox.Show(combo_category.Text + "  " + combo_producer.Text + "  " + text_name.Text + " " + text_amount.Text + " " + numeric_datedie.Value);
-            SilpoDBEntities1 db = new SilpoDBEntities1();
+            SilpoDBEntities db = new SilpoDBEntities();
 
                
                 Product product = new Product()
@@ -54,12 +57,14 @@ namespace Shop
                     Expiry_time = (int)numeric_datedie.Value,
                     ID_category = db.Category.Where(x => x.Name == combo_category.Text).First().ID_category,
                     ID_producer = db.Producer.Where(x=>x.Name ==combo_producer.Text).First().ID_producer
-
+                    
                      };
             db.Product.Add(product);
             db.SaveChanges();
+               
             MessageBox.Show(text_name.Text + "  Додано");
-            this.Hide();
+                this.DialogResult = DialogResult.OK;
+                this.Close();
 
         }
         }

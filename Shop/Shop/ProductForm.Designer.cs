@@ -66,12 +66,12 @@
             // col_name
             // 
             this.col_name.Text = "Name";
-            this.col_name.Width = 247;
+            this.col_name.Width = 239;
             // 
             // col_time
             // 
             this.col_time.Text = "Expiry time";
-            this.col_time.Width = 70;
+            this.col_time.Width = 63;
             // 
             // col_cat
             // 
@@ -81,11 +81,11 @@
             // col_produce
             // 
             this.col_produce.Text = "Producer";
-            this.col_produce.Width = 156;
+            this.col_produce.Width = 160;
             // 
             // but_add
             // 
-            this.but_add.BackColor = System.Drawing.SystemColors.Desktop;
+            this.but_add.BackColor = System.Drawing.Color.FloralWhite;
             this.but_add.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.but_add.ForeColor = System.Drawing.Color.ForestGreen;
             this.but_add.Location = new System.Drawing.Point(655, 12);
