@@ -23,7 +23,7 @@ namespace ShowCase
     public partial class MainWindow
     {
         SilpoDBEntities dbSilpo;
-        List<int> listIdProduct;
+        List<int> idInBasket;
         List<int> idAvailableProducts;
         private Users user;
 
@@ -31,7 +31,7 @@ namespace ShowCase
         {
             this.InitializeComponent();
                 this.dbSilpo = dbSilpo;
-                listIdProduct = new List<int>();
+                idInBasket = new List<int>();
                 this.user = user;
 
             this.labelUserName.Content = user.Full_name + "!";
@@ -116,7 +116,7 @@ namespace ShowCase
         private void buttonToBasket_Click(object sender, RoutedEventArgs e)
         {
             //Відкрити корзину
-            Basket bs = new Basket(listIdProduct, dbSilpo);
+            Basket bs = new Basket(idInBasket, dbSilpo);
             bs.ShowDialog();
         }
 
@@ -161,7 +161,24 @@ namespace ShowCase
 
                     catch { pr = 0; };
 
-                    Row row = new Row() 
+                    var btn = new FrameworkElementFactory(typeof(Button));
+                    // перевіряю чи є вже в корзині
+                    if (idInBasket.Contains(p.ID_product))
+                    {
+                        MessageBox.Show("Something is!");
+                    }
+
+                    //(idInBasket.Contains(p.ID_product) ? "Відм." : "Купити")
+
+
+                    btn.SetBinding(Button.IsEnabledProperty, new Binding("Status")
+                    {
+                        Converter = new StatusToEnabledConverter()
+                    });
+
+                    btn.SetValue(Button.ContentProperty, "Відм.");
+
+                    Row row = new Row()
                     {
                         Tag = p.ID_product,
                         number = 1 + i++,
@@ -169,7 +186,7 @@ namespace ShowCase
                         producer = producer.Name,
                         country = producer.Country,
                         price = pr, //ВКАЗАТИ ЦІНУ ТУТ
-                        b = new FrameworkElementFactory(typeof(Button))
+                        b = btn
                     };
                     dataGrid_case.Items.Add(row);
                 }
@@ -191,7 +208,7 @@ namespace ShowCase
                 Row currRow = dataGrid_case.Items[i] as Row;
 
                 buttonTemplate.SetValue(Button.ContentProperty, 
-                    listIdProduct.Contains(currRow.Tag) ? "Забрати" : "Купити");
+                    (idInBasket.Contains(currRow.Tag) ? "Відм." : "Купити"));
             }
 
             buttonTemplate.AddHandler(Button.ClickEvent,
@@ -200,15 +217,15 @@ namespace ShowCase
                     Row selectedRow = dataGrid_case.SelectedItem as Row;
                     Button btn = o as Button;
 
-                    if (btn.Content.ToString() == "Забрати")
+                    if (btn.Content.ToString() == "Відм.")
                     {
                         btn.Content = "Купити";
-                        listIdProduct.Remove(selectedRow.Tag);
+                        idInBasket.Remove(selectedRow.Tag);
                     }
                     else
                     {
-                        btn.Content = "Забрати";
-                        listIdProduct.Add(selectedRow.Tag);
+                        btn.Content = "Відм.";
+                        idInBasket.Add(selectedRow.Tag);
                     }
                 }));
 
