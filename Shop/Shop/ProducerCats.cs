@@ -12,9 +12,13 @@ namespace Shop
     using System;
     using System.Collections.Generic;
     
-    public partial class test
+    public partial class ProducerCats
     {
-        public int id { get; set; }
-        public Nullable<int> counts { get; set; }
+        public int ID_producer_cats { get; set; }
+        public int Id_producer { get; set; }
+        public int Id_category { get; set; }
+    
+        public virtual Category Category { get; set; }
+        public virtual Producer Producer { get; set; }
     }
 }

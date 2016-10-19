@@ -41,6 +41,10 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MaterialSkin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialSkin.0.2.1\lib\MaterialSkin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -57,17 +61,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddCategotyToProducer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddCategotyToProducer.Designer.cs">
+      <DependentUpon>AddCategotyToProducer.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdminPanel.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AdminPanel.Designer.cs">
       <DependentUpon>AdminPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="BalanceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BalanceForm.Designer.cs">
+      <DependentUpon>BalanceForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Bill.cs">
       <DependentUpon>SilpoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Category.cs">
       <DependentUpon>SilpoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CategoryPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CategoryPanel.Designer.cs">
+      <DependentUpon>CategoryPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Discount.cs">
       <DependentUpon>SilpoModel.tt</DependentUpon>
@@ -87,8 +109,20 @@
     <Compile Include="Orders.cs">
       <DependentUpon>SilpoModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Prices.cs">
+      <DependentUpon>SilpoModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Producer.cs">
       <DependentUpon>SilpoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProducerCats.cs">
+      <DependentUpon>SilpoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProducerPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProducerPanel.Designer.cs">
+      <DependentUpon>ProducerPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Product.cs">
       <DependentUpon>SilpoModel.tt</DependentUpon>
@@ -137,6 +171,12 @@
     <Compile Include="Storage.cs">
       <DependentUpon>SilpoModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="StorageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StorageForm.Designer.cs">
+      <DependentUpon>StorageForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Supply.cs">
       <DependentUpon>SilpoModel.tt</DependentUpon>
     </Compile>
@@ -149,23 +189,23 @@
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>SilpoModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="test.cs">
-      <DependentUpon>SilpoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="test_check5.cs">
-      <DependentUpon>SilpoModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Users.cs">
       <DependentUpon>SilpoModel.tt</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AdminPanel.resx">
       <DependentUpon>AdminPanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BalanceForm.resx">
+      <DependentUpon>BalanceForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NewProduct.resx">
       <DependentUpon>NewProduct.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewSupply.resx">
       <DependentUpon>NewSupply.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProducerPanel.resx">
+      <DependentUpon>ProducerPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProductForm.resx">
       <DependentUpon>ProductForm.cs</DependentUpon>
@@ -184,7 +224,11 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="StorageForm.resx">
+      <DependentUpon>StorageForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SupplyForm.resx">
       <DependentUpon>SupplyForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -213,6 +257,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\plus.png" />
+    <None Include="Resources\searchBitmap.png" />
     <Content Include="SilpoModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SilpoModel.edmx</DependentUpon>

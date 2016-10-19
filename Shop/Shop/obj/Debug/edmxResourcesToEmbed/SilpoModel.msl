@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="SilpoDBModelStoreContainer" CdmEntityContainer="SilpoDBEntities1">
+  <EntityContainerMapping StorageEntityContainer="SilpoDBModelStoreContainer" CdmEntityContainer="SilpoDBEntities">
     <EntitySetMapping Name="Bill">
       <EntityTypeMapping TypeName="SilpoDBModel.Bill">
         <MappingFragment StoreEntitySet="Bill">
-          <ScalarProperty Name="Id_bill" ColumnName="Id_bill" />
+          <ScalarProperty Name="idBill" ColumnName="idBill" />
+          <ScalarProperty Name="ID_User" ColumnName="ID_User" />
           <ScalarProperty Name="Balance" ColumnName="Balance" />
           <ScalarProperty Name="Bonus" ColumnName="Bonus" />
-          <ScalarProperty Name="ID_user" ColumnName="ID_user" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -23,7 +23,7 @@
       <EntityTypeMapping TypeName="SilpoDBModel.Discount">
         <MappingFragment StoreEntitySet="Discount">
           <ScalarProperty Name="Id_discount" ColumnName="Id_discount" />
-          <ScalarProperty Name="Id_prod" ColumnName="Id_prod" />
+          <ScalarProperty Name="Id_product" ColumnName="Id_product" />
           <ScalarProperty Name="Percent" ColumnName="Percent" />
           <ScalarProperty Name="Start" ColumnName="Start" />
           <ScalarProperty Name="End" ColumnName="End" />
@@ -33,13 +33,23 @@
     <EntitySetMapping Name="Orders">
       <EntityTypeMapping TypeName="SilpoDBModel.Orders">
         <MappingFragment StoreEntitySet="Orders">
-          <ScalarProperty Name="ID_order_customer" ColumnName="ID_order_customer" />
-          <ScalarProperty Name="ID_prod" ColumnName="ID_prod" />
-          <ScalarProperty Name="Id_user" ColumnName="Id_user" />
+          <ScalarProperty Name="ID_order" ColumnName="ID_order" />
+          <ScalarProperty Name="ID_product" ColumnName="ID_product" />
+          <ScalarProperty Name="ID_user" ColumnName="ID_user" />
           <ScalarProperty Name="Count" ColumnName="Count" />
           <ScalarProperty Name="FullPrice" ColumnName="FullPrice" />
           <ScalarProperty Name="Date_of_order" ColumnName="Date_of_order" />
           <ScalarProperty Name="Complited" ColumnName="Complited" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Prices">
+      <EntityTypeMapping TypeName="SilpoDBModel.Prices">
+        <MappingFragment StoreEntitySet="Prices">
+          <ScalarProperty Name="idPrice" ColumnName="idPrice" />
+          <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -52,10 +62,19 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ProducerCats">
+      <EntityTypeMapping TypeName="SilpoDBModel.ProducerCats">
+        <MappingFragment StoreEntitySet="ProducerCats">
+          <ScalarProperty Name="ID_producer_cats" ColumnName="ID_producer_cats" />
+          <ScalarProperty Name="Id_producer" ColumnName="Id_producer" />
+          <ScalarProperty Name="Id_category" ColumnName="Id_category" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Product">
       <EntityTypeMapping TypeName="SilpoDBModel.Product">
         <MappingFragment StoreEntitySet="Product">
-          <ScalarProperty Name="ID_prod" ColumnName="ID_prod" />
+          <ScalarProperty Name="ID_product" ColumnName="ID_product" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Expiry_time" ColumnName="Expiry_time" />
           <ScalarProperty Name="ID_category" ColumnName="ID_category" />
@@ -85,6 +104,7 @@
       <EntityTypeMapping TypeName="SilpoDBModel.Storage">
         <MappingFragment StoreEntitySet="Storage">
           <ScalarProperty Name="ID_storage" ColumnName="ID_storage" />
+          <ScalarProperty Name="Id_product" ColumnName="Id_product" />
           <ScalarProperty Name="id_supply" ColumnName="id_supply" />
           <ScalarProperty Name="Available_items" ColumnName="Available_items" />
           <ScalarProperty Name="FinalDate" ColumnName="FinalDate" />
@@ -115,14 +135,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="test">
-      <EntityTypeMapping TypeName="SilpoDBModel.test">
-        <MappingFragment StoreEntitySet="test">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="counts" ColumnName="counts" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="SilpoDBModel.Users">
         <MappingFragment StoreEntitySet="Users">
@@ -132,14 +144,6 @@
           <ScalarProperty Name="Role" ColumnName="Role" />
           <ScalarProperty Name="Login" ColumnName="Login" />
           <ScalarProperty Name="Password" ColumnName="Password" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="test_check5">
-      <EntityTypeMapping TypeName="SilpoDBModel.test_check5">
-        <MappingFragment StoreEntitySet="test_check5">
-          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-          <ScalarProperty Name="CustomerRole" ColumnName="CustomerRole" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

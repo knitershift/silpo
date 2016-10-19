@@ -4,27 +4,30 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="84b670cbfb174b7089fdf478c4bc3876" Name="Diagram1">
-        <EntityTypeShape EntityType="SilpoDBModel.Bill" Width="1.5" PointX="8.25" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SilpoDBModel.Category" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SilpoDBModel.Discount" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SilpoDBModel.Orders" Width="1.5" PointX="8.25" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SilpoDBModel.Producer" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SilpoDBModel.Product" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SilpoDBModel.Sell" Width="1.5" PointX="10.5" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SilpoDBModel.ShopBank" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SilpoDBModel.Storage" Width="1.5" PointX="7.5" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SilpoDBModel.Supply" Width="1.5" PointX="5.25" PointY="10.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SilpoDBModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="9.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SilpoDBModel.test" Width="1.5" PointX="2.75" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SilpoDBModel.Users" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SilpoDBModel.test_check5" Width="1.5" PointX="10.75" PointY="2.25" IsExpanded="true" />
+      <Diagram DiagramId="216900cccf6745fb833e1e7493dfa665" Name="Diagram1">
+        <EntityTypeShape EntityType="SilpoDBModel.Bill" Width="1.5" PointX="8.25" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SilpoDBModel.Category" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SilpoDBModel.Discount" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SilpoDBModel.Orders" Width="1.5" PointX="8.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SilpoDBModel.Prices" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SilpoDBModel.Producer" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SilpoDBModel.ProducerCats" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SilpoDBModel.Product" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SilpoDBModel.Sell" Width="1.5" PointX="10.5" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SilpoDBModel.ShopBank" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SilpoDBModel.Storage" Width="1.5" PointX="7.5" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SilpoDBModel.Supply" Width="1.5" PointX="5.25" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SilpoDBModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SilpoDBModel.Users" Width="1.5" PointX="6" PointY="14" IsExpanded="true" />
         <AssociationConnector Association="SilpoDBModel.FK_Bill_user_User_info" ManuallyRouted="false" />
+        <AssociationConnector Association="SilpoDBModel.FK_ProducerCats_Category" ManuallyRouted="false" />
         <AssociationConnector Association="SilpoDBModel.FK_Product_Category" ManuallyRouted="false" />
         <AssociationConnector Association="SilpoDBModel.FK_Discount_Product" ManuallyRouted="false" />
         <AssociationConnector Association="SilpoDBModel.FK_Order_Product" ManuallyRouted="false" />
         <AssociationConnector Association="SilpoDBModel.FK_Order_User_info" ManuallyRouted="false" />
         <AssociationConnector Association="SilpoDBModel.FK_Sell_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="SilpoDBModel.FK_Prices_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="SilpoDBModel.FK_ProducerCats_Producer" ManuallyRouted="false" />
         <AssociationConnector Association="SilpoDBModel.FK_Product_Producer" ManuallyRouted="false" />
         <AssociationConnector Association="SilpoDBModel.FK_Supply_Product" ManuallyRouted="false" />
         <AssociationConnector Association="SilpoDBModel.FK_Sell_User" ManuallyRouted="false" />

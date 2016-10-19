@@ -12,9 +12,13 @@ namespace Shop
     using System;
     using System.Collections.Generic;
     
-    public partial class test_check5
+    public partial class Prices
     {
-        public int CustomerId { get; set; }
-        public string CustomerRole { get; set; }
+        public int idPrice { get; set; }
+        public int idProduct { get; set; }
+        public decimal Price { get; set; }
+        public System.DateTime Date { get; set; }
+    
+        public virtual Product Product { get; set; }
     }
 }

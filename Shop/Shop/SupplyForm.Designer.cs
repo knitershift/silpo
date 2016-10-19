@@ -38,16 +38,18 @@
             this.col_amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.col_made = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.col_supply = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.textBox_search = new System.Windows.Forms.TextBox();
+            this.combo_month = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // but_delete
             // 
-            this.but_delete.BackColor = System.Drawing.Color.Firebrick;
+            this.but_delete.BackColor = System.Drawing.Color.FloralWhite;
             this.but_delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.but_delete.ForeColor = System.Drawing.Color.DarkGray;
+            this.but_delete.ForeColor = System.Drawing.Color.DarkRed;
             this.but_delete.Location = new System.Drawing.Point(653, 75);
             this.but_delete.Name = "but_delete";
-            this.but_delete.Size = new System.Drawing.Size(91, 54);
+            this.but_delete.Size = new System.Drawing.Size(94, 59);
             this.but_delete.TabIndex = 5;
             this.but_delete.Text = "Видалити";
             this.but_delete.UseVisualStyleBackColor = false;
@@ -55,10 +57,10 @@
             // 
             // but_add
             // 
-            this.but_add.BackColor = System.Drawing.SystemColors.Desktop;
+            this.but_add.BackColor = System.Drawing.Color.Cornsilk;
             this.but_add.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.but_add.ForeColor = System.Drawing.Color.DarkGreen;
-            this.but_add.Location = new System.Drawing.Point(650, 12);
+            this.but_add.Location = new System.Drawing.Point(653, 12);
             this.but_add.Name = "but_add";
             this.but_add.Size = new System.Drawing.Size(94, 57);
             this.but_add.TabIndex = 4;
@@ -78,13 +80,13 @@
             this.col_made,
             this.col_supply});
             this.listView_supply.FullRowSelect = true;
-            this.listView_supply.Location = new System.Drawing.Point(12, 12);
+            this.listView_supply.Location = new System.Drawing.Point(12, 49);
             this.listView_supply.Name = "listView_supply";
-            this.listView_supply.Size = new System.Drawing.Size(632, 647);
+            this.listView_supply.Size = new System.Drawing.Size(635, 610);
             this.listView_supply.TabIndex = 3;
             this.listView_supply.UseCompatibleStateImageBehavior = false;
             this.listView_supply.View = System.Windows.Forms.View.Details;
-            this.listView_supply.SelectedIndexChanged += new System.EventHandler(this.listView_supply_SelectedIndexChanged);
+            this.listView_supply.Click += new System.EventHandler(this.listView_supply_Click);
             // 
             // col_id
             // 
@@ -118,18 +120,52 @@
             this.col_supply.Text = "Suppy";
             this.col_supply.Width = 147;
             // 
+            // textBox_search
+            // 
+            this.textBox_search.Location = new System.Drawing.Point(460, 13);
+            this.textBox_search.Name = "textBox_search";
+            this.textBox_search.Size = new System.Drawing.Size(184, 20);
+            this.textBox_search.TabIndex = 6;
+            this.textBox_search.TextChanged += new System.EventHandler(this.textBox_search_TextChanged);
+            // 
+            // combo_month
+            // 
+            this.combo_month.FormattingEnabled = true;
+            this.combo_month.Items.AddRange(new object[] {
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12"});
+            this.combo_month.Location = new System.Drawing.Point(333, 13);
+            this.combo_month.Name = "combo_month";
+            this.combo_month.Size = new System.Drawing.Size(121, 21);
+            this.combo_month.TabIndex = 7;
+            this.combo_month.SelectedIndexChanged += new System.EventHandler(this.combo_month_SelectedIndexChanged);
+            // 
             // SupplyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkCyan;
             this.ClientSize = new System.Drawing.Size(756, 671);
+            this.Controls.Add(this.combo_month);
+            this.Controls.Add(this.textBox_search);
             this.Controls.Add(this.but_delete);
             this.Controls.Add(this.but_add);
             this.Controls.Add(this.listView_supply);
+            this.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.Name = "SupplyForm";
             this.Text = "SupplyForm";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -145,5 +181,7 @@
         private System.Windows.Forms.ColumnHeader col_amount;
         private System.Windows.Forms.ColumnHeader col_made;
         private System.Windows.Forms.ColumnHeader col_supply;
+        private System.Windows.Forms.TextBox textBox_search;
+        private System.Windows.Forms.ComboBox combo_month;
     }
 }
