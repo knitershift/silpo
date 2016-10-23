@@ -1,0 +1,309 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{48242E86-049F-4A85-BD45-3F4ED69D6FB8}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Shop</RootNamespace>
+    <AssemblyName>Shop</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MaterialSkin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialSkin.0.2.1\lib\MaterialSkin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddCategotyToProducer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddCategotyToProducer.Designer.cs">
+      <DependentUpon>AddCategotyToProducer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Add_disc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add_disc.designer.cs">
+      <DependentUpon>Add_disc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminPanel.Designer.cs">
+      <DependentUpon>AdminPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BalanceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BalanceForm.Designer.cs">
+      <DependentUpon>BalanceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bill.cs">
+      <DependentUpon>SilpoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cashbox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cashbox.designer.cs">
+      <DependentUpon>Cashbox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Category.cs">
+      <DependentUpon>SilpoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CategoryPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CategoryPanel.Designer.cs">
+      <DependentUpon>CategoryPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Discount.cs">
+      <DependentUpon>SilpoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewDiscount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewDiscount.designer.cs">
+      <DependentUpon>NewDiscount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewProduct.Designer.cs">
+      <DependentUpon>NewProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewSupply.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewSupply.Designer.cs">
+      <DependentUpon>NewSupply.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Orders.cs">
+      <DependentUpon>SilpoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Prices.cs">
+      <DependentUpon>SilpoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Producer.cs">
+      <DependentUpon>SilpoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProducerCats.cs">
+      <DependentUpon>SilpoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProducerPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProducerPanel.Designer.cs">
+      <DependentUpon>ProducerPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Product.cs">
+      <DependentUpon>SilpoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductForm.Designer.cs">
+      <DependentUpon>ProductForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Registration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registration.Designer.cs">
+      <DependentUpon>Registration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sell.cs">
+      <DependentUpon>SilpoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShopBank.cs">
+      <DependentUpon>SilpoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SignIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SignIn.Designer.cs">
+      <DependentUpon>SignIn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SilpoModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SilpoModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SilpoModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SilpoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SilpoModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SilpoModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Storage.cs">
+      <DependentUpon>SilpoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StorageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StorageForm.Designer.cs">
+      <DependentUpon>StorageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Supply.cs">
+      <DependentUpon>SilpoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SupplyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SupplyForm.Designer.cs">
+      <DependentUpon>SupplyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>SilpoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Users.cs">
+      <DependentUpon>SilpoModel.tt</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Add_disc.resx">
+      <DependentUpon>Add_disc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminPanel.resx">
+      <DependentUpon>AdminPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BalanceForm.resx">
+      <DependentUpon>BalanceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cashbox.resx">
+      <DependentUpon>Cashbox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewDiscount.resx">
+      <DependentUpon>NewDiscount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewProduct.resx">
+      <DependentUpon>NewProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewSupply.resx">
+      <DependentUpon>NewSupply.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProducerPanel.resx">
+      <DependentUpon>ProducerPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductForm.resx">
+      <DependentUpon>ProductForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Registration.resx">
+      <DependentUpon>Registration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SignIn.resx">
+      <DependentUpon>SignIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="StorageForm.resx">
+      <DependentUpon>StorageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SupplyForm.resx">
+      <DependentUpon>SupplyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EntityDeploy Include="SilpoModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SilpoModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="SilpoModel.edmx.diagram">
+      <DependentUpon>SilpoModel.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus.png" />
+    <None Include="Resources\searchBitmap.png" />
+    <Content Include="SilpoModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SilpoModel.edmx</DependentUpon>
+      <LastGenOutput>SilpoModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="SilpoModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SilpoModel.edmx</DependentUpon>
+      <LastGenOutput>SilpoModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
