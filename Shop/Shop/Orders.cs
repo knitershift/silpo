@@ -20,9 +20,9 @@ namespace Shop
             this.Sell = new HashSet<Sell>();
         }
     
-        public int ID_order_customer { get; set; }
-        public int ID_prod { get; set; }
-        public int Id_user { get; set; }
+        public int ID_order { get; set; }
+        public int ID_product { get; set; }
+        public int ID_user { get; set; }
         public int Count { get; set; }
         public decimal FullPrice { get; set; }
         public System.DateTime Date_of_order { get; set; }

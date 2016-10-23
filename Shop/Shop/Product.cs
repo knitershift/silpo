@@ -19,10 +19,11 @@ namespace Shop
         {
             this.Discount = new HashSet<Discount>();
             this.Orders = new HashSet<Orders>();
+            this.Prices = new HashSet<Prices>();
             this.Supply = new HashSet<Supply>();
         }
     
-        public int ID_prod { get; set; }
+        public int ID_product { get; set; }
         public string Name { get; set; }
         public Nullable<int> Expiry_time { get; set; }
         public Nullable<int> ID_category { get; set; }
@@ -33,6 +34,8 @@ namespace Shop
         public virtual ICollection<Discount> Discount { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Orders> Orders { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Prices> Prices { get; set; }
         public virtual Producer Producer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Supply> Supply { get; set; }
