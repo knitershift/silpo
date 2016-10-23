@@ -151,3 +151,35 @@ C:\Users\s23-rp\Downloads\silpo-Adminpanel\Shop\Shop\obj\Debug\Shop.Properties.R
 C:\Users\s23-rp\Downloads\silpo-Adminpanel\Shop\Shop\obj\Debug\Shop.StorageForm.resources
 C:\Users\s23-rp\Downloads\silpo-Adminpanel\Shop\Shop\obj\Debug\Shop.SupplyForm.resources
 C:\Users\s23-rp\Downloads\silpo-Adminpanel\Shop\Shop\obj\Debug\Shop.csproj.GenerateResource.Cache
+C:\Users\Dima\Desktop\Новая папка (2)\silpo\Shop\Shop\bin\Debug\Shop.exe.config
+C:\Users\Dima\Desktop\Новая папка (2)\silpo\Shop\Shop\obj\Debug\Shop.exe
+C:\Users\Dima\Desktop\Новая папка (2)\silpo\Shop\Shop\obj\Debug\Shop.pdb
+C:\Users\Dima\Desktop\Новая папка (2)\silpo\Shop\Shop\bin\Debug\Shop.exe
+C:\Users\Dima\Desktop\Новая папка (2)\silpo\Shop\Shop\bin\Debug\Shop.pdb
+C:\Users\Dima\Desktop\Новая папка (2)\silpo\Shop\Shop\bin\Debug\EntityFramework.dll
+C:\Users\Dima\Desktop\Новая папка (2)\silpo\Shop\Shop\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Dima\Desktop\Новая папка (2)\silpo\Shop\Shop\bin\Debug\MaterialSkin.dll
+C:\Users\Dima\Desktop\Новая папка (2)\silpo\Shop\Shop\bin\Debug\mscorlib.dll
+C:\Users\Dima\Desktop\Новая папка (2)\silpo\Shop\Shop\bin\Debug\System.Net.Http.dll
+C:\Users\Dima\Desktop\Новая папка (2)\silpo\Shop\Shop\bin\Debug\EntityFramework.xml
+C:\Users\Dima\Desktop\Новая папка (2)\silpo\Shop\Shop\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Dima\Desktop\Новая папка (2)\silpo\Shop\Shop\bin\Debug\System.Net.Http.xml
+C:\Users\Dima\Desktop\Новая папка (2)\silpo\Shop\Shop\bin\Debug\ru\mscorlib.resources.dll
+C:\Users\Dima\Desktop\Новая папка (2)\silpo\Shop\Shop\bin\Debug\normidna.nlp
+C:\Users\Dima\Desktop\Новая папка (2)\silpo\Shop\Shop\bin\Debug\normnfc.nlp
+C:\Users\Dima\Desktop\Новая папка (2)\silpo\Shop\Shop\bin\Debug\normnfd.nlp
+C:\Users\Dima\Desktop\Новая папка (2)\silpo\Shop\Shop\bin\Debug\normnfkc.nlp
+C:\Users\Dima\Desktop\Новая папка (2)\silpo\Shop\Shop\bin\Debug\normnfkd.nlp
+C:\Users\Dima\Desktop\Новая папка (2)\silpo\Shop\Shop\obj\Debug\Shop.csprojResolveAssemblyReference.cache
+C:\Users\Dima\Desktop\Новая папка (2)\silpo\Shop\Shop\obj\Debug\Shop.AdminPanel.resources
+C:\Users\Dima\Desktop\Новая папка (2)\silpo\Shop\Shop\obj\Debug\Shop.BalanceForm.resources
+C:\Users\Dima\Desktop\Новая папка (2)\silpo\Shop\Shop\obj\Debug\Shop.NewProduct.resources
+C:\Users\Dima\Desktop\Новая папка (2)\silpo\Shop\Shop\obj\Debug\Shop.NewSupply.resources
+C:\Users\Dima\Desktop\Новая папка (2)\silpo\Shop\Shop\obj\Debug\Shop.ProducerPanel.resources
+C:\Users\Dima\Desktop\Новая папка (2)\silpo\Shop\Shop\obj\Debug\Shop.ProductForm.resources
+C:\Users\Dima\Desktop\Новая папка (2)\silpo\Shop\Shop\obj\Debug\Shop.Registration.resources
+C:\Users\Dima\Desktop\Новая папка (2)\silpo\Shop\Shop\obj\Debug\Shop.SignIn.resources
+C:\Users\Dima\Desktop\Новая папка (2)\silpo\Shop\Shop\obj\Debug\Shop.Properties.Resources.resources
+C:\Users\Dima\Desktop\Новая папка (2)\silpo\Shop\Shop\obj\Debug\Shop.StorageForm.resources
+C:\Users\Dima\Desktop\Новая папка (2)\silpo\Shop\Shop\obj\Debug\Shop.SupplyForm.resources
+C:\Users\Dima\Desktop\Новая папка (2)\silpo\Shop\Shop\obj\Debug\Shop.csproj.GenerateResource.Cache
