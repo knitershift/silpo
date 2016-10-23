@@ -39,32 +39,67 @@ namespace Shop
             {
                 try
                 {
-                    var role = db.Users.Where(x => x.Login == textBox_login.Text).Where(y => y.Password == textBox_password.Text).Select(r => r.Role).First();
-                    //MessageBox.Show(role);
-                    if (role == "admin" && comboBox_role.Text == "адмін")
+                    //var role = db.Users.Where(x => x.Login == textBox_login.Text).Where(y => y.Password == textBox_password.Text).Select(r => r.Role).First();
+                    ////MessageBox.Show(role);
+                    //if (role == "admin" && comboBox_role.Text == "адмін")
+                    //{
+                    //    AdminPanel adm = new AdminPanel(textBox_login.Text);
+                    //    SignIn sn = new SignIn();
+                    //    this.Hide();
+                    //    Thread.Sleep(1000);
+                    //    adm.ShowDialog();
+                    //}
+
+                    //else if (role == "seller" && comboBox_role.Text == "касир")
+                    //{
+                    //    Cashbox cashbox = new Cashbox(textBox_login.Text);
+                    //    this.Hide();
+                    //    cashbox.ShowDialog();
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("В доступі відмовлено");
+                    //}
+                    int logins = db.Users.Where(log => log.Login == textBox_login.Text).Count(); // вибірка логіна із введеного
+
+                    //MessageBox.Show(logins.Login.ToString());
+                    if (logins > 0)
                     {
-                        AdminPanel adm = new AdminPanel(textBox_login.Text);
-                        SignIn sn = new SignIn();
-                        this.Hide();
-                        Thread.Sleep(1000);
-                        adm.ShowDialog();
+                        var role = db.Users.Where(x => x.Login == textBox_login.Text).Where(y => y.Password == textBox_password.Text).Select(r => r.Role).First();
+                        //MessageBox.Show(role);
+                        if (role == "admin" && comboBox_role.Text == "адмін")
+                        {
+                            AdminPanel adm = new AdminPanel(textBox_login.Text);
+                            SignIn sn = new SignIn();
+                            this.Hide();
+                            Thread.Sleep(1000);
+                            adm.ShowDialog();
+                        }
+
+                        else if (role == "seller" && comboBox_role.Text == "касир")
+                        {
+                            Cashbox cashbox = new Cashbox(textBox_login.Text);
+                            this.Hide();
+                            cashbox.ShowDialog();
+                        }
+                        else
+                        {
+                            MessageBox.Show("В доступі відмовлено введіть правильні дані");
+                        }
+
+                    }
+                    else if (logins == 0)
+                    {
+                        MessageBox.Show("вас немає зареєструйтеся");
+
+
                     }
 
-                    else if (role == "seller" && comboBox_role.Text == "касир")
-                    {
-                        Cashbox cashbox = new Cashbox(textBox_login.Text);
-                        this.Hide();
-                        cashbox.ShowDialog();
-                    }
-                    else
-                    {
-                        MessageBox.Show("В доступі відмовлено");
-                    }
 
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("такого користувача немає,можете реєструватися");
+                    MessageBox.Show("ввели неправильні дані, повторіть");
                     //MessageBox.Show(ex.Message);
 
                 }
