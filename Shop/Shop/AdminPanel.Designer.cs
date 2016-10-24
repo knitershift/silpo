@@ -181,6 +181,7 @@
             this.label_name.Size = new System.Drawing.Size(47, 25);
             this.label_name.TabIndex = 1;
             this.label_name.Text = "Ім\'я";
+            this.label_name.Click += new System.EventHandler(this.label_name_Click);
             // 
             // but_Exit
             // 
@@ -294,6 +295,7 @@
             this.but_discount.TabIndex = 4;
             this.but_discount.Text = "Знижки";
             this.but_discount.UseVisualStyleBackColor = false;
+            this.but_discount.Click += new System.EventHandler(this.but_discount_Click);
             // 
             // but_user
             // 
@@ -306,6 +308,7 @@
             this.but_user.TabIndex = 5;
             this.but_user.Text = "Користувачі";
             this.but_user.UseVisualStyleBackColor = false;
+            this.but_user.Click += new System.EventHandler(this.but_user_Click);
             // 
             // but_report
             // 
@@ -318,6 +321,7 @@
             this.but_report.TabIndex = 6;
             this.but_report.Text = "Звіти";
             this.but_report.UseVisualStyleBackColor = false;
+            this.but_report.Click += new System.EventHandler(this.but_report_Click);
             // 
             // but_balance
             // 

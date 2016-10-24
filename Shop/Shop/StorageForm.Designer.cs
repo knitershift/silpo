@@ -38,6 +38,7 @@
             // 
             // listView_Storage
             // 
+            this.listView_Storage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.listView_Storage.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.id,
             this.Product,
@@ -59,7 +60,7 @@
             // 
             // Product
             // 
-            this.Product.Text = "Product";
+            this.Product.Text = "Продукт";
             this.Product.Width = 141;
             // 
             // idSupply
@@ -68,11 +69,11 @@
             // 
             // Items
             // 
-            this.Items.Text = "Items";
+            this.Items.Text = "штук";
             // 
             // Final
             // 
-            this.Final.Text = "Final";
+            this.Final.Text = "Залишок на дату";
             this.Final.Width = 150;
             // 
             // StorageForm
