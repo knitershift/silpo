@@ -32,10 +32,10 @@ namespace ShowCase
 
     public static class FrameworkElementFactoryExtension
     {
-        public static void SetTextButton(this FrameworkElementFactory b)
+        public static void SetTextButton(this FrameworkElementFactory b, string text)
         {
 
-            b.SetValue(Button.ContentProperty, "Extention");
+            b.SetValue(Button.ContentProperty, text);
         }
     }
 

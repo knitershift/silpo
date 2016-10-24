@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ShowCase"
         mc:Ignorable="d"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="Сільпо вітрина" MinWidth="800" MinHeight="600">
+        Title="Сільпо вітрина" Icon="silpoicon.ico" MinWidth="800" MinHeight="600" WindowStartupLocation="CenterScreen" ShowIconOnTitleBar="False">
 
     <Grid Name="MainGrid">
 
@@ -30,9 +31,9 @@
         <Image Source="silpo.gif" RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased"
                Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Width="200"/>
 
-        <StackPanel Margin="5 10 0 0" Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Left">
-            <Label FontSize="12" FontFamily="Segoe UI">Вітаємо вас: </Label>
-            <Label x:Name="labelUserName" FontWeight="DemiBold" Content="Імя Користувача!" FontSize="12" FontFamily="Segoe UI"/>
+        <StackPanel Margin="5 10 0 0" Orientation="Vertical" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Left">
+            <Label FontSize="14" FontFamily="Segoe UI">Вітаємо вас: </Label>
+            <Label x:Name="labelUserName" FontWeight="DemiBold" Content="Імя Користувача!" FontSize="17" FontFamily="Segoe UI" Margin="0 -10 0 0"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Right">
             <!--Стилі кнопок в верхньому меню-->
@@ -99,18 +100,15 @@
 
 
                 <StackPanel Orientation="Horizontal">
-                    <!--<Label FontFamily="Segoe UI" FontWeight="Normal" Foreground="White">Корзина</Label>-->
-                    <!--<Label x:Name="labelCountChosen" FontSize="20">0</Label>-->
                     <Image Source="cart.png" Height="35"  RenderOptions.BitmapScalingMode="HighQuality" />
-                    
                 </StackPanel>
             </Button>
-            <Button x:Name="buttonDiscounts" Style="{StaticResource MyButton}">
+            <Button x:Name="buttonDiscounts" Style="{StaticResource MyButton}" Click="buttonDiscounts_Click">
                 <TextBlock>Знижки</TextBlock>
             </Button>
             <!--<Button x:Name="buttonBalance" Content="Баланс" Style="{StaticResource MyButton}"/>-->
             <Button x:Name="buttonAccount" Content="Акаунт" Style="{StaticResource MyButton}" Click="buttonAccount_Click"/>
-            <Button x:Name="buttonExit" Content="Вийти" Style="{StaticResource MyButton}"/>
+            <Button x:Name="buttonExit" Content="Вийти" Style="{StaticResource MyButton}" Click="buttonExit_Click"/>
         </StackPanel>
 
         <!--Кінець верхнього ряду -->
@@ -123,7 +121,7 @@
 
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="3" VerticalAlignment="Bottom" >
             <Label Content="Товарів: " Grid.Column="2" FontSize="18" FontFamily="Segoe UI"/>
-            <Label x:Name="labelCountProduct" Content="31" FontFamily="Segoe UI" FontSize="18" FontWeight="DemiBold"/>
+            <Label x:Name="labelCountProduct" Content="шт" FontFamily="Segoe UI" FontSize="18" FontWeight="DemiBold"/>
         </StackPanel>
         <!--Кінець інформації-->
 
@@ -160,8 +158,13 @@
         <!--Список товарів -->
         <DataGrid x:Name="dataGrid_case" IsReadOnly="True" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" CanUserReorderColumns="False" CanUserResizeColumns="False">
             <DataGrid.Resources>
-
+                <Style x:Key="CellStyleCenter" TargetType="DataGridCell">
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                    <Setter Property="Background" Value="{Binding}" />
+                    <Setter Property="BorderThickness" Value="0" />
+                </Style>
             </DataGrid.Resources>
+            
             <DataGrid.ColumnHeaderStyle>
                 <Style TargetType="{x:Type DataGridColumnHeader}">
                     <Setter Property="FontWeight"  Value="Bold" />
@@ -181,12 +184,15 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="№" Binding="{Binding Path=number}" Width="39"/>
                 <DataGridTextColumn Header="Назва" Binding="{Binding Path=name}" Width="0.30*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Виробник" Binding="{Binding Path=producer}" Width="0.15*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Країна" Binding="{Binding Path=country}" Width="0.15*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Ціна" Binding="{Binding Path=price}" Width="0.10*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Купити" Binding="{Binding Path=b}" ></DataGridTextColumn>
+                <DataGridTextColumn Header="Виробник" Binding="{Binding Path=producer}" Width="0.15*" CellStyle="{StaticResource CellStyleCenter}" />
+                <DataGridTextColumn Header="Країна" Binding="{Binding Path=country}" Width="0.15*" CellStyle="{StaticResource CellStyleCenter}"/>
+                <DataGridTextColumn Header="Ціна" Binding="{Binding Path=price}" Width="0.10*" CellStyle="{StaticResource CellStyleCenter}"/>
+                <DataGridTextColumn Header="Купити" Binding="{Binding Path=btn}"/>
             </DataGrid.Columns>
         </DataGrid>
 
+        <Canvas Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Image gif:ImageBehavior.AnimatedSource="Images/loader.gif" Stretch="UniformToFill" x:Name="imgLoading" RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased" Source="GifLoad.gif" Width="130" Margin="-65 -65 0 0" Opacity=".8" Visibility="Hidden"/>
+        </Canvas>
     </Grid>
 </Controls:MetroWindow>

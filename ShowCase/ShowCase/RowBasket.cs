@@ -14,5 +14,6 @@ namespace ShowCase
         public double suma { get; set; }
         public FrameworkElementFactory b { get; set; }
         public int allAmount { get; set; }
+        public int Tag;
     }
 }

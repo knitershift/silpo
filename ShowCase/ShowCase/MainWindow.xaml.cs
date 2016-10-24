@@ -14,169 +14,147 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Globalization;
 using MahApps.Metro.Controls;
+using System.Threading;
 
 namespace ShowCase
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow
     {
         SilpoDBEntities dbSilpo;
+        private Users user;
+
         List<int> idInBasket;
         List<int> idAvailableProducts;
-        private Users user;
+
+        Dictionary<string, int> categoriesInfo; //name and id
+        Dictionary<int, List<Row>> catRows;
+
 
         public MainWindow(SilpoDBEntities dbSilpo, Users user)
         {
             this.InitializeComponent();
-                this.dbSilpo = dbSilpo;
-                idInBasket = new List<int>();
-                this.user = user;
-
+            this.dbSilpo = dbSilpo;
+            this.user = user;
             this.labelUserName.Content = user.Full_name + "!";
-                fillData();
-            addButtonToGrid();
 
+            idInBasket = new List<int>();
+            initShop();
+            
         }
 
-        private void fillData()
+
+        bool preloadData()
         {
-            // Fill categories list
+            try { 
+            getAllAvailableProducts();
+
+            categoriesInfo = new Dictionary<string, int>();
+            catRows = new Dictionary<int, List<Row>>();
+
             foreach (var c in dbSilpo.Category)
             {
-                ListViewItem itm = new ListViewItem();
-                itm.Content = c.Name;
-                itm.Tag = c.ID_category;
-                this.listViewCategory.Items.Add(itm);
+                categoriesInfo.Add(c.Name, c.ID_category); // save Name and ID of category
+                catRows.Add(c.ID_category, productsOfCategory(c.ID_category)); // preload rows for each category   
             }
+                return true;
+            }
+            catch {
+                return false;
+            }
+        }
 
-            Row row;
-            int i = 0;
-            int countProduct = dbSilpo.Product.Count();
+        private Task<bool> preloadAsync()
+        {
+            return Task.Factory.StartNew(() => preloadData());
+        }
 
-            labelCountProduct.Content = countProduct.ToString();
+        async void initShop()
+        {
             labelNameCategory.Content = "Всі";
 
-            //** добути товари які на складі **//
+            imgLoading.Visibility = Visibility.Visible;
+            imgLoading.Opacity = 1;
+            TimeSpan fadeOutTime = new TimeSpan(0, 0, 0, 0, 300);
+            var fadeAnimation = new System.Windows.Media.Animation.DoubleAnimation(0d, fadeOutTime);
 
+            if (await preloadAsync()) // якщо все успішно загружено
+            {
+                labelCountProduct.Content = idAvailableProducts.Count.ToString();
+
+                showAllCategories();
+                showAllProducts();
+                
+
+                addButtonToGrid();
+
+                imgLoading.BeginAnimation(Image.OpacityProperty, fadeAnimation);
+                imgLoading.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                MessageBox.Show("Вибачаємось. Проблеми з інтернетом або з системою");
+                this.Close();
+            }
+        }
+
+        void showAllCategories()
+        {
+            foreach (var c in categoriesInfo)
+            {
+                var li = new ListViewItem();
+                li.Content = c.Key;
+                li.Tag = c.Value;
+                listViewCategory.Items.Add(li);
+            }
+        }
+
+        void showAllProducts()
+        {
+            foreach (var list in catRows.Values)
+            {
+                foreach(var r in list)
+                    dataGrid_case.Items.Add(r);
+            }
+                
+        }
+
+        private void getAllAvailableProducts()
+        {
             idAvailableProducts = new List<int>(); // id доступних товарів
-
             var storage = dbSilpo.Storage.Where(s => s.FinalDate < DateTime.Now && s.Available_items > 0);
 
-            foreach (var s in storage){
+            foreach (var s in storage)
+            {
                 int id = dbSilpo.Product.Where(p => p.ID_product == s.Id_product).First().ID_product;
-                if(!idAvailableProducts.Contains(id))
+                if (!idAvailableProducts.Contains(id))
                     idAvailableProducts.Add(id);
             }
-
-            foreach (var p in dbSilpo.Product)
-            {   
-                if (!idAvailableProducts.Contains(p.ID_product))
-                    continue;
-
-                // get name and country producer
-                Producer producer = (from tmp in dbSilpo.Producer
-                                     where tmp.ID_producer == p.ID_producer
-                                     select tmp).SingleOrDefault<Producer>();
-
-                // get current Price
-                double pr;
-                try
-                {
-                    Prices price = (from s in dbSilpo.Prices.ToList()  // не заповнено ще
-                                    where s.idProduct == p.ID_product
-                                    select s).Last();
-
-                    if (price == null)
-                        pr = p.ID_product;
-                    else
-                        pr = (double)price.Price;
-                }
-
-                catch { pr = 0; };                          
-
-                row = new Row()
-                {
-                    // в Tag записати Dictionary <int,int> - id, скільки є
-                    Tag = p.ID_product,
-                    number = 1 + i++,
-                    name = p.Name,
-                    producer = producer.Name,
-                    country = producer.Country,
-                    price = pr,
-                    b = new FrameworkElementFactory(typeof(Button))
-                };
-
-                dataGrid_case.Items.Add(row);
-            }
-
         }
 
-        private void buttonToBasket_Click(object sender, RoutedEventArgs e)
+        private List<Row> productsOfCategory(int idCategory)
         {
-            //Відкрити корзину
-            Basket bs = new Basket(idInBasket, dbSilpo);
-            bs.ShowDialog();
-        }
+            var list = new List<Row>();
 
-        private void listViewCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            dataGrid_case.Items.Clear();
-
-            ListViewItem itm = listViewCategory.SelectedItem as ListViewItem;
-
-            int idCat = (int)itm.Tag;
-
-            int countProduct = dbSilpo.Product.Where(x => x.ID_category == idCat).Count();
-            labelCountProduct.Content = countProduct.ToString();
-            labelNameCategory.Content = itm.Content.ToString();
-
-            
             int i = 0;
             foreach (var p in dbSilpo.Product)
             {
                 if (!idAvailableProducts.Contains(p.ID_product))
                     continue;
 
-                    if (p.ID_category == idCat)
-                {
-                    Producer producer = (from tmp in dbSilpo.Producer
-                                         where tmp.ID_producer == p.ID_producer
-                                         select tmp).SingleOrDefault<Producer>();
-
-
+                if (p.ID_category == idCategory)
+                {;
+                    Producer producer = dbSilpo.Producer.ToList().Where(pro => pro.ID_producer == p.ID_producer).SingleOrDefault();
                     double pr;
                     try
                     {
-                        Prices price = (from s in dbSilpo.Prices.ToList()  // не заповнено ще
-                                        where s.idProduct == p.ID_product
-                                        select s).Last();
-
-                        if (price == null)
-                            pr = p.ID_product;
-                        else
-                            pr = (double)price.Price;
+                        Prices price = dbSilpo.Prices.ToList().Where(prc => prc.idProduct == p.ID_product).Last();
+                        pr = (price == null) ? p.ID_product : (double)price.Price;
                     }
-
                     catch { pr = 0; };
 
                     var btn = new FrameworkElementFactory(typeof(Button));
-                    // перевіряю чи є вже в корзині
-                    if (idInBasket.Contains(p.ID_product))
-                    {
-                        MessageBox.Show("Something is!");
-                    }
 
-                    //(idInBasket.Contains(p.ID_product) ? "Відм." : "Купити")
-
-
-                    btn.SetBinding(Button.IsEnabledProperty, new Binding("Status")
-                    {
-                        Converter = new StatusToEnabledConverter()
-                    });
-
-                    btn.SetValue(Button.ContentProperty, "Відм.");
+                    btn.SetBinding(Button.ContentProperty, new Binding("btnText"));
 
                     Row row = new Row()
                     {
@@ -185,49 +163,58 @@ namespace ShowCase
                         name = p.Name,
                         producer = producer.Name,
                         country = producer.Country,
-                        price = pr, //ВКАЗАТИ ЦІНУ ТУТ
-                        b = btn
+                        price = pr,
+                        b = btn,
+                        btnText = idInBasket.Contains(p.ID_product) ? "Відм." : "Купити"
                     };
-                    dataGrid_case.Items.Add(row);
+
+                    list.Add(row);
                 }
             }
+            return list;
+        }
 
+
+        private void listViewCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            dataGrid_case.Items.Clear();
+
+            ListViewItem itm = listViewCategory.SelectedItem as ListViewItem;
+
+            int idCat = (int)itm.Tag;
+            labelNameCategory.Content = itm.Content.ToString();
+            labelCountProduct.Content = catRows[idCat].Count.ToString();
+
+            foreach (var r in catRows[idCat])
+                dataGrid_case.Items.Add(r);
         }
 
         private void addButtonToGrid()
         {
             FrameworkElementFactory buttonTemplate = new FrameworkElementFactory(typeof(Button));
-            buttonTemplate.SetBinding(Button.IsEnabledProperty, new Binding("Status")
-            {
-                Converter = new StatusToEnabledConverter()
-            });
-
-            //Якщо товар вже є у корзині напис буде "забрати", а ні то - "купити"
-            for (int i = 0; i < dataGrid_case.Items.Count; i++)
-            {
-                Row currRow = dataGrid_case.Items[i] as Row;
-
-                buttonTemplate.SetValue(Button.ContentProperty, 
-                    (idInBasket.Contains(currRow.Tag) ? "Відм." : "Купити"));
-            }
+            buttonTemplate.SetBinding(Button.ContentProperty, new Binding("btnText"));
 
             buttonTemplate.AddHandler(Button.ClickEvent,
-                new RoutedEventHandler((o, e) =>
-                {
-                    Row selectedRow = dataGrid_case.SelectedItem as Row;
-                    Button btn = o as Button;
+                  new RoutedEventHandler((o, e) =>
+                  {
+                      Row selectedRow = dataGrid_case.SelectedItem as Row;
+                      Button btn = o as Button;
 
-                    if (btn.Content.ToString() == "Відм.")
-                    {
-                        btn.Content = "Купити";
-                        idInBasket.Remove(selectedRow.Tag);
-                    }
-                    else
-                    {
-                        btn.Content = "Відм.";
-                        idInBasket.Add(selectedRow.Tag);
-                    }
-                }));
+                      if (btn.Content.ToString() == "Відм.")
+                      {
+                          selectedRow.btnText = "Купити";
+                          btn.Content = "Купити";
+                          idInBasket.Remove(selectedRow.Tag);
+                      }
+                      else
+                      {
+                          selectedRow.btnText = "Відм.";
+                          btn.Content = "Відм.";
+                          idInBasket.Add(selectedRow.Tag);
+                      }
+                  }));
+
 
             //заголовок колонки "купити"
             dataGrid_case.Columns[5] = new DataGridTemplateColumn()
@@ -235,13 +222,30 @@ namespace ShowCase
                 Header = "Купити",
                 CellTemplate = new DataTemplate() { VisualTree = buttonTemplate }
             };
-
         }
 
         private void buttonAccount_Click(object sender, RoutedEventArgs e)
         {
             Account ac = new Account(user, dbSilpo);
             ac.ShowDialog();
+        }
+
+        private void buttonToBasket_Click(object sender, RoutedEventArgs e)
+        {
+            Basket bs = new Basket(idInBasket, dbSilpo, user);
+            bs.Show();
+        }
+
+        private void buttonExit_Click(object sender, RoutedEventArgs e)
+        {
+            new LogIn().Show();
+            this.Close();
+        }
+
+        private void buttonDiscounts_Click(object sender, RoutedEventArgs e)
+        {
+            Discounts dis = new Discounts(dbSilpo);
+            dis.ShowDialog();
         }
     }
 }

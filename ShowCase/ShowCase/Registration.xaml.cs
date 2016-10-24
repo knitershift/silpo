@@ -18,10 +18,11 @@ namespace ShowCase
     /// <summary>
     /// Логика взаимодействия для Registration.xaml
     /// </summary>
-    public partial class Registration : Window
+    public partial class Registration
     {
         DataTable users;
         SilpoDBEntities db;
+
         public Registration(DataTable users, SilpoDBEntities db)
         {
             InitializeComponent();
@@ -33,7 +34,7 @@ namespace ShowCase
         {
             if (textBox_City.Text.Length <= 4 && textBox_FullName.Text.Length <= 4 && textBox_Login.Text.Length <= 4 && textBox_Password.Text.Length <= 4)
             {
-                MessageBox.Show("Дані не заповнені !");
+                MessageBox.Show("Дані не заповнені!");
                 return;
             }
             bool enter = false;
@@ -52,7 +53,7 @@ namespace ShowCase
                 try
                 {
                     if (enter)
-                        MessageBox.Show("Incorrect login !!");
+                        MessageBox.Show("Невірний логін!");
                     else
                     {
 
@@ -87,11 +88,5 @@ namespace ShowCase
                 }
             }
         }
-
-        private void button_Cancel_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
     }
 }

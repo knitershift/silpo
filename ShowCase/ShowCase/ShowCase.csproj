@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>silpoicon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -92,8 +95,10 @@
     <Compile Include="Discount.cs">
       <DependentUpon>SilpoModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Discounts.xaml.cs">
+      <DependentUpon>Discounts.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FrameworkElementFactory.cs" />
-    <Compile Include="Loading.xaml.cs" />
     <Compile Include="LogIn.xaml.cs" />
     <Compile Include="Orders.cs">
       <DependentUpon>SilpoModel.tt</DependentUpon>
@@ -113,6 +118,7 @@
     <Compile Include="Registration.xaml.cs" />
     <Compile Include="Row.cs" />
     <Compile Include="RowBasket.cs" />
+    <Compile Include="RowDiscounts.cs" />
     <Compile Include="Sell.cs">
       <DependentUpon>SilpoModel.tt</DependentUpon>
     </Compile>
@@ -146,9 +152,6 @@
     <Compile Include="Users.cs">
       <DependentUpon>SilpoModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="WindowUP.xaml.cs">
-      <DependentUpon>WindowUP.xaml</DependentUpon>
-    </Compile>
     <Page Include="Account.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -157,9 +160,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Loading.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Discounts.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LogIn.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -180,10 +183,6 @@
     <Page Include="Registration.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="WindowUP.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -234,6 +233,12 @@
     <Resource Include="my.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="silpoicon.ico" />
+    <Resource Include="Images\Logo_Silpo.jpg" />
+    <Resource Include="Images\membership.png" />
+    <Resource Include="Images\loading.gif" />
+    <Resource Include="Images\large_spinner_orange.gif" />
+    <Resource Include="Images\loader.gif" />
     <Content Include="SilpoModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SilpoModel.edmx</DependentUpon>

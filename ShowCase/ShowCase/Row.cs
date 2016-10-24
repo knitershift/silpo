@@ -24,6 +24,7 @@ namespace ShowCase
         public string country { get; set; }
         public double price { get; set; }
         public FrameworkElementFactory b { get; set; }
+        public string btnText {get;set;}
         public int Tag;
     }
 
