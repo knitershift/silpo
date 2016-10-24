@@ -37,12 +37,11 @@
             this.but_add = new System.Windows.Forms.Button();
             this.but_delete = new System.Windows.Forms.Button();
             this.textBox_search = new System.Windows.Forms.TextBox();
-            this.Search = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listView_product
             // 
-            this.listView_product.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.listView_product.BackColor = System.Drawing.Color.CadetBlue;
             this.listView_product.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.col_id,
             this.col_name,
@@ -51,7 +50,7 @@
             this.col_produce});
             this.listView_product.ForeColor = System.Drawing.SystemColors.WindowText;
             this.listView_product.FullRowSelect = true;
-            this.listView_product.Location = new System.Drawing.Point(12, 67);
+            this.listView_product.Location = new System.Drawing.Point(12, 46);
             this.listView_product.Name = "listView_product";
             this.listView_product.Size = new System.Drawing.Size(637, 568);
             this.listView_product.TabIndex = 0;
@@ -89,7 +88,7 @@
             this.but_add.BackColor = System.Drawing.Color.FloralWhite;
             this.but_add.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.but_add.ForeColor = System.Drawing.Color.ForestGreen;
-            this.but_add.Location = new System.Drawing.Point(655, 67);
+            this.but_add.Location = new System.Drawing.Point(655, 12);
             this.but_add.Name = "but_add";
             this.but_add.Size = new System.Drawing.Size(92, 52);
             this.but_add.TabIndex = 1;
@@ -102,7 +101,7 @@
             this.but_delete.BackColor = System.Drawing.SystemColors.ControlLight;
             this.but_delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.but_delete.ForeColor = System.Drawing.Color.Firebrick;
-            this.but_delete.Location = new System.Drawing.Point(655, 125);
+            this.but_delete.Location = new System.Drawing.Point(655, 70);
             this.but_delete.Name = "but_delete";
             this.but_delete.Size = new System.Drawing.Size(92, 57);
             this.but_delete.TabIndex = 2;
@@ -112,22 +111,11 @@
             // 
             // textBox_search
             // 
-            this.textBox_search.Location = new System.Drawing.Point(477, 29);
+            this.textBox_search.Location = new System.Drawing.Point(477, 12);
             this.textBox_search.Name = "textBox_search";
             this.textBox_search.Size = new System.Drawing.Size(172, 20);
             this.textBox_search.TabIndex = 3;
             this.textBox_search.TextChanged += new System.EventHandler(this.textBox_search_TextChanged);
-            // 
-            // Search
-            // 
-            this.Search.BackColor = System.Drawing.Color.DarkGray;
-            this.Search.Location = new System.Drawing.Point(655, 26);
-            this.Search.Name = "Search";
-            this.Search.Size = new System.Drawing.Size(92, 35);
-            this.Search.TabIndex = 4;
-            this.Search.Text = "Пошук";
-            this.Search.UseVisualStyleBackColor = false;
-            this.Search.Click += new System.EventHandler(this.Search_Click);
             // 
             // ProductForm
             // 
@@ -135,7 +123,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkCyan;
             this.ClientSize = new System.Drawing.Size(751, 626);
-            this.Controls.Add(this.Search);
             this.Controls.Add(this.textBox_search);
             this.Controls.Add(this.but_delete);
             this.Controls.Add(this.but_add);
@@ -160,6 +147,5 @@
         private System.Windows.Forms.ColumnHeader col_cat;
         private System.Windows.Forms.ColumnHeader col_produce;
         private System.Windows.Forms.TextBox textBox_search;
-        private System.Windows.Forms.Button Search;
     }
 }

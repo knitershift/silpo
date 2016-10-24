@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Shop</RootNamespace>
     <AssemblyName>Shop</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -67,6 +68,12 @@
     <Compile Include="AddCategotyToProducer.Designer.cs">
       <DependentUpon>AddCategotyToProducer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Add_disc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add_disc.designer.cs">
+      <DependentUpon>Add_disc.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdminPanel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +89,12 @@
     <Compile Include="Bill.cs">
       <DependentUpon>SilpoModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Cashbox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cashbox.designer.cs">
+      <DependentUpon>Cashbox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Category.cs">
       <DependentUpon>SilpoModel.tt</DependentUpon>
     </Compile>
@@ -94,6 +107,12 @@
     <Compile Include="Discount.cs">
       <DependentUpon>SilpoModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="NewDiscount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewDiscount.designer.cs">
+      <DependentUpon>NewDiscount.cs</DependentUpon>
+    </Compile>
     <Compile Include="NewProduct.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,6 +124,12 @@
     </Compile>
     <Compile Include="NewSupply.Designer.cs">
       <DependentUpon>NewSupply.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewUsers.Designer.cs">
+      <DependentUpon>NewUsers.cs</DependentUpon>
     </Compile>
     <Compile Include="Orders.cs">
       <DependentUpon>SilpoModel.tt</DependentUpon>
@@ -138,6 +163,18 @@
     </Compile>
     <Compile Include="Registration.Designer.cs">
       <DependentUpon>Registration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports.Designer.cs">
+      <DependentUpon>Reports.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report_salushok.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report_salushok.Designer.cs">
+      <DependentUpon>Report_salushok.cs</DependentUpon>
     </Compile>
     <Compile Include="Sell.cs">
       <DependentUpon>SilpoModel.tt</DependentUpon>
@@ -192,17 +229,29 @@
     <Compile Include="Users.cs">
       <DependentUpon>SilpoModel.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Add_disc.resx">
+      <DependentUpon>Add_disc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdminPanel.resx">
       <DependentUpon>AdminPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BalanceForm.resx">
       <DependentUpon>BalanceForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Cashbox.resx">
+      <DependentUpon>Cashbox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewDiscount.resx">
+      <DependentUpon>NewDiscount.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NewProduct.resx">
       <DependentUpon>NewProduct.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewSupply.resx">
       <DependentUpon>NewSupply.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewUsers.resx">
+      <DependentUpon>NewUsers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProducerPanel.resx">
       <DependentUpon>ProducerPanel.cs</DependentUpon>
@@ -212,6 +261,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Registration.resx">
       <DependentUpon>Registration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports.resx">
+      <DependentUpon>Reports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report_salushok.resx">
+      <DependentUpon>Report_salushok.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SignIn.resx">
       <DependentUpon>SignIn.cs</DependentUpon>

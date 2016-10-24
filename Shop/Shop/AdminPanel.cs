@@ -107,5 +107,27 @@ namespace Shop
             CategoryPanel catPanel = new CategoryPanel();
             catPanel.ShowDialog();
         }
+
+        private void but_discount_Click(object sender, EventArgs e)
+        {
+            NewDiscount discount = new NewDiscount();
+            discount.ShowDialog();
+        }
+
+        private void label_name_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void but_user_Click(object sender, EventArgs e)
+        {
+            NewUsers userform = new NewUsers();
+            userform.ShowDialog();
+        }
+
+        private void but_report_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
